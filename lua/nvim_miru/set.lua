@@ -39,8 +39,10 @@ vim.g.mapleader = " "
 
 vim.o.background = "dark"
 
--- vim.o.title = true
+vim.o.title = true
 -- vim.cmd [[set titlestring=%F\ \ %{strftime('%d.%m.%Y\ %H:%M',getftime(expand('%')))}]]
+vim.cmd [[set titlestring=%t]]
+
 -- Update the contents that are modified out side of vim.
 -- The update happens through calling checktime, which is
 -- triggered whenever the terminal gets a focus.
