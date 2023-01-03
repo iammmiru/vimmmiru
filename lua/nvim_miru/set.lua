@@ -29,7 +29,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.opt.updatetime = 4000
+vim.opt.updatetime = 1000
 
 vim.opt.textwidth = 80
 vim.opt.wrap = true

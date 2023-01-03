@@ -96,10 +96,9 @@ lsp.on_attach(function(_, bufnr)
     end
 
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-    nmap("[d", vim.diagnostic.goto_next, 'Go to next error')
-    nmap("]d", vim.diagnostic.goto_prev, 'Go to previous error')
+    nmap("]d", vim.diagnostic.goto_next, 'Go to next error')
+    nmap("[d", vim.diagnostic.goto_prev, 'Go to previous error')
     nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
     nmap('gv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
         '[G]oto definition [V]ertical split')
@@ -112,6 +111,8 @@ lsp.on_attach(function(_, bufnr)
     -- See `:help K` for why this keymap
     nmap('K', require('rust-tools').hover_actions.hover_actions, 'Hover Documentation')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    -- nmap('<leader>ca', require('rust-tools').code_action_group.code_action_group, '[C]ode [A]ction')
 
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -129,6 +130,21 @@ lsp.on_attach(function(_, bufnr)
             vim.lsp.buf.formatting()
         end
     end, { desc = 'Format current buffer with LSP' })
+
+    vim.api.nvim_create_autocmd("CursorMoved", {
+        buffer = bufnr,
+        callback = function()
+            local opts = {
+                focusable = false,
+                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                border = 'rounded',
+                source = 'always',
+                prefix = ' ',
+                scope = 'cursor',
+            }
+            vim.diagnostic.open_float(nil, opts)
+        end
+    })
 end)
 
 local rust_lsp = lsp.build_options('rust_analyzer', {})
@@ -138,5 +154,5 @@ require('rust-tools').setup({ server = rust_lsp })
 
 
 vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = false,
 })
