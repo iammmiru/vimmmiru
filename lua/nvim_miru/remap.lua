@@ -32,10 +32,10 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-vim.keymap.set({ "n", "t" }, "<C-\\>f", "<cmd> ToggleTerm direction=float<CR>", { desc = "Toggle terminal float" })
-vim.keymap.set({ "n", "t" }, "<C-\\>h", "<cmd> ToggleTerm direction=horizontal<CR>",
-    { desc = "Toggle terminal horizontal" })
-vim.keymap.set({ "n", "t" }, "<C-\\>v", "<cmd> ToggleTerm direction=vertical<CR>", { desc = "Toggle terminal vertical" })
+vim.keymap.set({ "n", "t" }, "<C-\\>", "<cmd> ToggleTerm direction=float<CR>", { desc = "Toggle terminal float" })
+-- vim.keymap.set({ "n", "t" }, "<C-\\>h", "<cmd> ToggleTerm direction=horizontal<CR>",
+--     { desc = "Toggle terminal horizontal" })
+-- vim.keymap.set({ "n", "t" }, "<C-\\>v", "<cmd> ToggleTerm direction=vertical<CR>", { desc = "Toggle terminal vertical" })
 
 
 -- Copy to clipboard
