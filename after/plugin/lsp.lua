@@ -3,12 +3,14 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'tsserver',
-    'eslint',
     'sumneko_lua',
     'rust_analyzer',
-    -- 'jdtls',
+    'jdtls',
+    'pyright',
 })
+
+-- lsp.skip_server_setup({ 'rust_analyzer', 'jdtls' })
+lsp.skip_server_setup({ 'rust_analyzer' })
 
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
@@ -81,7 +83,7 @@ lsp.set_preferences({
 --
 -- lsp.setup()
 
-lsp.on_attach(function(_, bufnr)
+lsp.on_attach(function(client, bufnr)
     -- NOTE: Remember that lua is a real programming language, and as such it is possible
     -- to define small helper and utility functions so you don't have to repeat yourself
     -- many times.
@@ -95,6 +97,11 @@ lsp.on_attach(function(_, bufnr)
 
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
+
+    -- if client.name == "jdtls" then
+    --     vim.cmd.LspStop('jdtls')
+    --     return
+    -- end
 
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
@@ -148,22 +155,54 @@ lsp.on_attach(function(_, bufnr)
     })
 end)
 
-
--- local lsp_attach = lsp.on_attach
--- local lspconfig = require('lspconfig')
--- lspconfig.jdtls.setup({
---     cmd = {"jdtls"},
---     on_attach = lsp_attach,
---     root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git") or vim.fn.getcwd()
--- })
-
 local rust_lsp = lsp.build_options('rust_analyzer', {})
 lsp.setup()
 require('rust-tools').setup({ server = rust_lsp })
 
-
-
-
 vim.diagnostic.config({
     virtual_text = false,
 })
+
+-- local M = {}
+-- M.lsp_attach = lsp.on_attach
+-- return M
+
+
+
+-- local SYSTEM = "linux"
+-- if vim.fn.has "mac" == 1 then
+--     SYSTEM = "mac"
+-- end
+--
+-- local jdtls_path = vim.fn.stdpath('data') .. "/mason/packages/jdtls"
+-- local path_to_lsp_server = jdtls_path .. "/config_" .. SYSTEM
+-- local path_to_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+-- local lombok_path = jdtls_path .. "/lombok.jar"
+--
+-- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+-- local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
+-- os.execute("mkdir -p " .. workspace_dir)
+--
+-- -- local lsp_attach = lsp.on_attach
+-- local lspconfig = require('lspconfig')
+-- lspconfig.jdtls.setup({
+--     cmd = {
+--         'java',
+--         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+--         '-Dosgi.bundles.defaultStartLevel=4',
+--         '-Declipse.product=org.eclipse.jdt.ls.core.product',
+--         '-Dlog.protocol=true',
+--         '-Dlog.level=ALL',
+--         '-javaagent:' .. lombok_path,
+--         '-Xms1g',
+--         '--add-modules=ALL-SYSTEM',
+--         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+--         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+--
+--         '-jar', path_to_jar,
+--         '-configuration', path_to_lsp_server,
+--         '-data', workspace_dir,
+--     },
+--     root_dir = lspconfig.util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle") or vim.fn.getcwd(),
+--     use_lombok_agent = true,
+-- })
