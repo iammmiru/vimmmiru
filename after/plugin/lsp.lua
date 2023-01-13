@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero")
+local M = {}
 
 lsp.preset("recommended")
 
@@ -7,10 +8,11 @@ lsp.ensure_installed({
     'rust_analyzer',
     'jdtls',
     'pyright',
+    'bashls',
 })
 
 -- lsp.skip_server_setup({ 'rust_analyzer', 'jdtls' })
-lsp.skip_server_setup({ 'rust_analyzer' })
+-- lsp.skip_server_setup({ 'rust_analyzer' })
 
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
@@ -61,29 +63,7 @@ lsp.set_preferences({
     }
 })
 
--- lsp.on_attach(function(client, bufnr)
---     local opts = { buffer = bufnr, remap = false }
---
---     if client.name == "eslint" then
---         vim.cmd.LspStop('eslint')
---         return
---     end
---     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
---     vim.keymap.set("n", 'gr', require('telescope.builtin').lsp_references, opts)
---     vim.keymap.set("n", 'gI', vim.lsp.buf.implementation, opts)
---     vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
---     vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
---     vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
---     vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
---     vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
---     vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
---     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
---     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
--- end)
---
--- lsp.setup()
-
-lsp.on_attach(function(client, bufnr)
+function M.lsp_attach(client, bufnr)
     -- NOTE: Remember that lua is a real programming language, and as such it is possible
     -- to define small helper and utility functions so you don't have to repeat yourself
     -- many times.
@@ -139,6 +119,7 @@ lsp.on_attach(function(client, bufnr)
         end
     end, { desc = 'Format current buffer with LSP' })
 
+    -- Show virtual text on a popup window
     vim.api.nvim_create_autocmd("CursorMoved", {
         buffer = bufnr,
         callback = function()
@@ -153,56 +134,43 @@ lsp.on_attach(function(client, bufnr)
             vim.diagnostic.open_float(nil, opts)
         end
     })
-end)
+end
 
-local rust_lsp = lsp.build_options('rust_analyzer', {})
-lsp.setup()
-require('rust-tools').setup({ server = rust_lsp })
+lsp.on_attach(M.lsp_attach)
 
 vim.diagnostic.config({
     virtual_text = false,
 })
 
--- local M = {}
--- M.lsp_attach = lsp.on_attach
--- return M
+lsp.setup()
 
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local rt_opts = {
+    server = {
+        on_attach = M.lsp_attach,
+        capabilities = lsp_capabilities,
+        settings = {
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                assist = {
+                    importPrefix = "by_self",
+                },
+                cargo = {
+                    allFeatures = true,
+                },
+                checkOnSave = {
+                    command = "clippy",
+                },
+                lens = {
+                    references = true,
+                    methodReferences = true,
+                },
+            },
+        },
+    }
+}
 
--- local SYSTEM = "linux"
--- if vim.fn.has "mac" == 1 then
---     SYSTEM = "mac"
--- end
---
--- local jdtls_path = vim.fn.stdpath('data') .. "/mason/packages/jdtls"
--- local path_to_lsp_server = jdtls_path .. "/config_" .. SYSTEM
--- local path_to_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
--- local lombok_path = jdtls_path .. "/lombok.jar"
---
--- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
--- local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
--- os.execute("mkdir -p " .. workspace_dir)
---
--- -- local lsp_attach = lsp.on_attach
--- local lspconfig = require('lspconfig')
--- lspconfig.jdtls.setup({
---     cmd = {
---         'java',
---         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
---         '-Dosgi.bundles.defaultStartLevel=4',
---         '-Declipse.product=org.eclipse.jdt.ls.core.product',
---         '-Dlog.protocol=true',
---         '-Dlog.level=ALL',
---         '-javaagent:' .. lombok_path,
---         '-Xms1g',
---         '--add-modules=ALL-SYSTEM',
---         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
---         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
---
---         '-jar', path_to_jar,
---         '-configuration', path_to_lsp_server,
---         '-data', workspace_dir,
---     },
---     root_dir = lspconfig.util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle") or vim.fn.getcwd(),
---     use_lombok_agent = true,
--- })
+require('rust-tools').setup(rt_opts)
+
+return M
