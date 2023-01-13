@@ -7,6 +7,7 @@ lsp.ensure_installed({
     'eslint',
     'sumneko_lua',
     'rust_analyzer',
+    -- 'jdtls',
 })
 
 -- Fix Undefined global 'vim'
@@ -147,9 +148,19 @@ lsp.on_attach(function(_, bufnr)
     })
 end)
 
+
+-- local lsp_attach = lsp.on_attach
+-- local lspconfig = require('lspconfig')
+-- lspconfig.jdtls.setup({
+--     cmd = {"jdtls"},
+--     on_attach = lsp_attach,
+--     root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git") or vim.fn.getcwd()
+-- })
+
 local rust_lsp = lsp.build_options('rust_analyzer', {})
 lsp.setup()
 require('rust-tools').setup({ server = rust_lsp })
+
 
 
 

@@ -91,7 +91,9 @@ return require('packer').startup(function(use)
             { 'j-hui/fidget.nvim' },
             -- Bracket paring
             { 'windwp/nvim-autopairs' },
-
         }
     }
+
+    -- Java LSP
+    use('mfussenegger/nvim-jdtls')
 end)
