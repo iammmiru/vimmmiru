@@ -15,9 +15,15 @@ vim.keymap.set("x", "p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>Y", [["+yg_]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
+-- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- Paste from clipboard
+vim.keymap.set('n', '<leader>p', '"+p')
+vim.keymap.set('n', '<leader>P', '"+P')
+vim.keymap.set("v", '<leader>p', '"+p')
+vim.keymap.set("v", '<leader>P', '"+P')
 
 vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -38,17 +44,6 @@ vim.keymap.set({ "n", "t" }, "<C-\\>", "<cmd> ToggleTerm direction=float<CR>", {
 -- vim.keymap.set({ "n", "t" }, "<C-\\>v", "<cmd> ToggleTerm direction=vertical<CR>", { desc = "Toggle terminal vertical" })
 
 
--- Copy to clipboard
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set('n', '<leader>Y', '"+yg_')
-vim.keymap.set('n', '<leader>y', '"+y')
-
--- Paste from clipboard
-vim.keymap.set('n', '<leader>p', '"+p')
-vim.keymap.set('n', '<leader>P', '"+P')
-vim.keymap.set("v", '<leader>p', '"+p')
-vim.keymap.set("v", '<leader>P', '"+P')
-
 -- Switching between buffers
 vim.keymap.set('n', '<C-l>', '<cmd> bnext <cr>')
-vim.keymap.set('n', '<S-Tab>', '<cmd> bprevious <cr>')
+vim.keymap.set('n', '<C-h>', '<cmd> bprevious <cr>')
