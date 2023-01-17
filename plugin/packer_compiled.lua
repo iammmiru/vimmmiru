@@ -120,6 +120,11 @@ _G.packer_plugins = {
     path = "/Users/mirulee/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["csv.vim"] = {
+    loaded = true,
+    path = "/Users/mirulee/.local/share/nvim/site/pack/packer/start/csv.vim",
+    url = "https://github.com/chrisbra/csv.vim"
+  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "/Users/mirulee/.local/share/nvim/site/pack/packer/start/fidget.nvim",
@@ -185,11 +190,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/mirulee/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
-  },
-  ["nvim-jdtls"] = {
-    loaded = true,
-    path = "/Users/mirulee/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
-    url = "https://github.com/mfussenegger/nvim-jdtls"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

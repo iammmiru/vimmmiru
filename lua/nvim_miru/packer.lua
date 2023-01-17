@@ -92,6 +92,9 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- CSV plugin
+    use ('chrisbra/csv.vim')
+
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -124,7 +127,7 @@ return require('packer').startup(function(use)
         }
     }
     -- Java LSP
-    use('mfussenegger/nvim-jdtls')
+    -- use('mfussenegger/nvim-jdtls')
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
