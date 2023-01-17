@@ -15,26 +15,29 @@ local lombok_path = jdtls_path .. "/lombok.jar"
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
-os.execute("mkdir -p " .. workspace_dir)
 
--- local lsp_attach = lsp.on_attach
 local lspconfig = require('lspconfig')
 lspconfig.jdtls.setup({
+    -- cmd = {'jdtls'},
     cmd = {
-        'java',
-        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        '/usr/bin/java',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        -- '-Dosgi.checkConfiguration=true',
+        -- '-Dosgi.sharedConfiguration.area='..path_to_lsp_server,
+        -- '-Dosgi.sharedConfiguration.area.readOnly=true',
+        -- '-Dosgi.configuration.cascaded=true',
+        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
         '-javaagent:' .. lombok_path,
-        '-Xms1g',
+        '-Xms1G',
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-
         '-jar', path_to_jar,
         '-configuration', path_to_lsp_server,
+        -- '-data', '/var/folders/w6/s7cw1mf96kd32dzydrmj8qlm0000gn/T/jdtls-8df74f65f436a682b1313b894eee93abfcb7a976',
         '-data', workspace_dir,
     },
     root_dir = lspconfig.util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle") or vim.fn.getcwd(),

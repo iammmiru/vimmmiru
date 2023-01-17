@@ -13,6 +13,7 @@ lsp.ensure_installed({
 
 -- lsp.skip_server_setup({ 'rust_analyzer', 'jdtls' })
 -- lsp.skip_server_setup({ 'rust_analyzer' })
+-- lsp.skip_server_setup({ 'jdtls' })
 
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
