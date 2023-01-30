@@ -47,3 +47,8 @@ vim.keymap.set({ "n", "t" }, "<C-\\>", "<cmd> ToggleTerm direction=float<CR>", {
 -- Switching between buffers
 vim.keymap.set('n', '<C-l>', '<cmd> bnext <cr>')
 vim.keymap.set('n', '<C-h>', '<cmd> bprevious <cr>')
+
+-- Unmap some annoyting behaviors
+vim.keymap.set("n", "L", "")
+vim.keymap.set("n", "H", "")
+vim.keymap.set("n", "J", "")
