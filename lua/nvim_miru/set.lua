@@ -19,7 +19,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -50,3 +50,6 @@ vim.cmd [[set titlestring=%t]]
 vim.cmd [[au FocusGained,BufEnter * checktime]]
 -- turning on relative line numbers in netrw
 vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+
+-- turn on spell check
+vim.cmd [[set spell spelllang=en_us]]

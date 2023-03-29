@@ -4,7 +4,7 @@ local M = {}
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'sumneko_lua',
+    'lua_ls',
     'rust_analyzer',
     'jdtls',
     'pyright',
@@ -16,7 +16,7 @@ lsp.ensure_installed({
 -- lsp.skip_server_setup({ 'jdtls' })
 
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {

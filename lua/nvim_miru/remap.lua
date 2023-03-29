@@ -48,7 +48,11 @@ vim.keymap.set({ "n", "t" }, "<C-\\>", "<cmd> ToggleTerm direction=float<CR>", {
 vim.keymap.set('n', '<C-l>', '<cmd> bnext <cr>')
 vim.keymap.set('n', '<C-h>', '<cmd> bprevious <cr>')
 
--- Unmap some annoyting behaviors
+-- Unmap some annoying behaviors
 vim.keymap.set("n", "L", "")
 vim.keymap.set("n", "H", "")
 vim.keymap.set("n", "J", "")
+vim.keymap.set({"n","t","i","v"}, "<C-w>q", "")
+
+-- remove search highlight
+vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", {desc = "Remove search highlight"})
