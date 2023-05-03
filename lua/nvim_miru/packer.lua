@@ -127,6 +127,9 @@ return require('packer').startup(function(use)
             { 'windwp/nvim-autopairs' },
         }
     }
+    -- Null-ls
+    use('jose-elias-alvarez/null-ls.nvim')
+
     -- Java LSP
     -- use('mfussenegger/nvim-jdtls')
 
