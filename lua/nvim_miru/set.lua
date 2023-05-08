@@ -53,3 +53,6 @@ vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 
 -- turn on spell check
 vim.cmd [[set spell spelllang=en_us]]
+
+-- turn off crappy search count
+vim.cmd [[set shortmess+=S]]
