@@ -56,3 +56,6 @@ vim.keymap.set({"n","t","i","v"}, "<C-w>q", "")
 
 -- remove search highlight
 vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", {desc = "Remove search highlight"})
+
+vim.keymap.set({"n","v"}, "<C-s>", "<C-a>", {noremap = true, silent = true})
+vim.keymap.set({"n","v"}, "g<C-s>", "g<C-a>", {noremap = true, silent = true})
