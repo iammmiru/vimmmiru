@@ -135,6 +135,14 @@ function M.lsp_attach(client, bufnr)
             vim.diagnostic.open_float(nil, opts)
         end
     })
+
+	-- auto format rust files on save
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		pattern = "*.rs",
+		callback = function()
+			vim.lsp.buf.format()
+		end
+	})
 end
 
 lsp.on_attach(M.lsp_attach)
