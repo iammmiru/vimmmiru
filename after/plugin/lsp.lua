@@ -140,7 +140,7 @@ function M.lsp_attach(client, bufnr)
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "*.rs",
 		callback = function()
-			vim.lsp.buf.format()
+			vim.lsp.buf.format({timeout_ms=200})
 		end
 	})
 end
