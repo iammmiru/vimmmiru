@@ -175,6 +175,9 @@ local rt_opts = {
                     references = true,
                     methodReferences = true,
                 },
+				files = {
+					excludeDirs = {"/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/", "base/core/src/licensing/"},
+				},
             },
         },
     }
