@@ -56,3 +56,6 @@ vim.cmd [[set spell spelllang=en_us]]
 
 -- turn off crappy search count
 vim.cmd [[set shortmess+=S]]
+
+-- keep the current directory the same as the browsing directory
+vim.g.netrw_keepdir = 0
