@@ -168,7 +168,7 @@ local rt_opts = {
 				cargo = {
 					allFeatures = true,
 				},
-				checkOnSave = {
+				check = {
 					command = "clippy",
 				},
 				lens = {
