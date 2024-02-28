@@ -39,8 +39,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
@@ -57,14 +56,13 @@ return require('packer').startup(function(use)
     -- statusline
     use { 'nvim-lualine/lualine.nvim' }
 
-    -- Indent break line
-    use { 'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require('indent_blankline').setup {
-                char = '┊',
-                show_trailing_blankline_indent = false,
-            }
-        end }
+	-- Indent break line
+	use { 'lukas-reineke/indent-blankline.nvim',
+		config = function()
+			require('ibl').setup {
+				indent = { char = "┊" }
+			}
+		end }
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-context')
