@@ -168,9 +168,6 @@ local rt_opts = {
 				cargo = {
 					allFeatures = true,
 				},
-				check = {
-					command = "clippy",
-				},
 				lens = {
 					references = true,
 					methodReferences = true,
