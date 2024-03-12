@@ -1,5 +1,9 @@
 require('telescope').setup {
     defaults = {
+		layout_config = {
+			width = 0.9,
+			preview_width = 0.4,
+		},
         mappings = {
             i = {
                 ['<C-u>'] = false,

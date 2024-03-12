@@ -162,15 +162,8 @@ local rt_opts = {
 		settings = {
 			-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 			["rust-analyzer"] = {
-				assist = {
-					importPrefix = "by_self",
-				},
-				cargo = {
-					allFeatures = true,
-				},
-				lens = {
-					references = true,
-					methodReferences = true,
+				check = {
+					command = "clippy"
 				},
 				files = {
 					excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/", "base/core/src/licensing/" },
