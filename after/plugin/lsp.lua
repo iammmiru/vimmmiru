@@ -166,7 +166,7 @@ local rt_opts = {
 					command = "clippy"
 				},
 				files = {
-					excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/", "base/core/src/licensing/" },
+					excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/" },
 				},
 			},
 		},
