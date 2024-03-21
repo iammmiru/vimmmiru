@@ -126,7 +126,7 @@ return require('packer').startup(function(use)
         }
     }
     -- Null-ls
-    use('jose-elias-alvarez/null-ls.nvim')
+    -- use('jose-elias-alvarez/null-ls.nvim')
 
     -- Java LSP
     -- use('mfussenegger/nvim-jdtls')
