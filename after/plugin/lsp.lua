@@ -9,6 +9,7 @@ lsp.ensure_installed({
 	'jdtls',
 	'pyright',
 	'bashls',
+	'ruff_lsp'
 })
 
 -- lsp.skip_server_setup({ 'rust_analyzer', 'jdtls' })
