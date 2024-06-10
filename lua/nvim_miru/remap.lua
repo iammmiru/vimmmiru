@@ -60,3 +60,6 @@ vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", {desc = "Remove search highligh
 
 vim.keymap.set({"n","v"}, "<C-s>", "<C-a>", {noremap = true, silent = true})
 vim.keymap.set({"n","v"}, "g<C-s>", "g<C-a>", {noremap = true, silent = true})
+
+-- copy current directory path to clipboard
+vim.keymap.set("n", "cd", ":let @+ = expand('%')<CR>")
