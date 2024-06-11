@@ -1,4 +1,4 @@
-local lsp_attach = require('lsp').lsp_attach
+local lsp_attach = require('lsp-zero').lsp_attach
 
 local SYSTEM = "linux"
 if vim.fn.has "mac" == 1 then

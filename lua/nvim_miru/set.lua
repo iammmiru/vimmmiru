@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 vim.opt.termguicolors = true
 vim.opt.guicursor = "n-c-v:block-nCursor"
 -- vim.opt.guicursor = ""
@@ -35,8 +38,6 @@ vim.opt.textwidth = 80
 vim.opt.wrapmargin = 80
 vim.opt.wrap = true
 vim.opt.linebreak = true
-
-vim.g.mapleader = " "
 
 vim.o.background = "dark"
 
