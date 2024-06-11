@@ -35,6 +35,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
 	['<C-y>'] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
+	['<C-u>'] = cmp.mapping.scroll_docs(-4),
+	['<C-d>'] = cmp.mapping.scroll_docs(4),
+
 })
 
 -- disabling cmp in comments
@@ -65,7 +68,7 @@ lsp.set_preferences({
 	}
 })
 
-function M.lsp_attach(client, bufnr)
+function M.lsp_attach(_, bufnr)
 	-- NOTE: Remember that lua is a real programming language, and as such it is possible
 	-- to define small helper and utility functions so you don't have to repeat yourself
 	-- many times.
