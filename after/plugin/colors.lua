@@ -1,5 +1,6 @@
 -- vim.cmd[[set t_Co=256]]
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.cmd.colorscheme("seoulbones")
 vim.cmd [[hi IncSearch guibg=teal guifg=reverse]]
 vim.cmd [[hi Search guibg=teal]]
