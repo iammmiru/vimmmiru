@@ -1,7 +1,7 @@
 return {
 	{
 		'nvim-telescope/telescope.nvim',
-		config = function()
+		keys = function()
 			vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
 				{ desc = '[?] Find recently opened files' })
 			vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,
