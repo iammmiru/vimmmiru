@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = "9a7ad2ff7a7ea81016aca2fc89c9b2c1a5365421",
+		commit = "9a7ad2ff7a7ea81016aca2fc89c9b2c1a5365421",
 		build = ":TSUpdate",
 		lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
 		init = function(plugin)

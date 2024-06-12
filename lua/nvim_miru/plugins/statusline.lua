@@ -1,7 +1,7 @@
 return {
 	{
 		'nvim-lualine/lualine.nvim',
-		version = "0a5a66803c7407767b799067986b4dc3036e1983",
+		commit = "0a5a66803c7407767b799067986b4dc3036e1983",
 		opts = {
 			options = {
 				icons_enabled = false,

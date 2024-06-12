@@ -1,7 +1,7 @@
 return {
 	{
 		'theprimeagen/harpoon',
-		version = "ccae1b9bec717ae284906b0bf83d720e59d12b91",
+		commit = "ccae1b9bec717ae284906b0bf83d720e59d12b91",
 		config = function()
 			local mark = require("harpoon.mark")
 			local ui   = require("harpoon.ui")
