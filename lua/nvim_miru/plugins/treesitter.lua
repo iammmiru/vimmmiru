@@ -18,6 +18,8 @@ return {
 			{ "<c-space>", desc = "Increment Selection" },
 			{ "<bs>",      desc = "Decrement Selection", mode = "x" },
 		},
+		opts_extend = { "ensure_installed" },
+		---@diagnostic disable-next-line: missing-fields
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -25,26 +27,13 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = '<c-space>',
-					node_incremental = '<c-space>',
-					scope_incremental = '<c-s>',
-					node_decremental = '<c-backspace>',
+					init_selection = '<C-space>',
+					node_incremental = '<C-space>',
+					scope_incremental = '<C-s>',
+					node_decremental = '<C-bs>',
 				},
 			},
 			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-					keymaps = {
-						-- You can use the capture groups defined in textobjects.scm
-						['aa'] = '@parameter.outer',
-						['ia'] = '@parameter.inner',
-						['af'] = '@function.outer',
-						['if'] = '@function.inner',
-						['ac'] = '@class.outer',
-						['ic'] = '@class.inner',
-					},
-				},
 				move = {
 					enable = true,
 					set_jumps = true, -- whether to set jumps in the jumplist
@@ -65,17 +54,10 @@ return {
 						['[]'] = '@class.outer',
 					},
 				},
-				swap = {
-					enable = true,
-					swap_next = {
-						['<leader>a'] = '@parameter.inner',
-					},
-					swap_previous = {
-						['<leader>A'] = '@parameter.inner',
-					},
-				},
 			}
-		}
+		},
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
+		end,
 	}
 }
-
