@@ -8,8 +8,6 @@ return {
 					border = "single"
 				}
 			}
-
 		}
-
 	},
 }
