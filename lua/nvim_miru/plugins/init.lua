@@ -18,7 +18,6 @@ return {
 		end,
 	},
 
-	'nvim-lua/plenary.nvim',
 	-- Terminal functionalities
 	{
 		"akinsho/toggleterm.nvim",
@@ -27,7 +26,6 @@ return {
 			require("toggleterm").setup()
 		end
 	},
-
 
 	{
 		'numToStr/Comment.nvim',
