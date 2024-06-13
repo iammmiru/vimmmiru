@@ -11,7 +11,6 @@ return {
 			sections = {
 				lualine_x = { 'encoding', 'fileformat', 'filetype', { 'searchcount', maxcount = 100000, timeout = 500 } }
 			}
-
 		}
 	}
 }
