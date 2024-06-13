@@ -9,17 +9,6 @@ return {
 			{ 'williamboman/mason.nvim' },
 			{ 'williamboman/mason-lspconfig.nvim' },
 
-			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' },
-			{ 'hrsh7th/cmp-buffer' },
-			{ 'hrsh7th/cmp-path' },
-			{ 'saadparwaiz1/cmp_luasnip' },
-			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'hrsh7th/cmp-nvim-lua' },
-			{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
-			{ 'hrsh7th/cmp-vsnip' },
-			{ 'hrsh7th/vim-vsnip' },
-
 			-- Snippets
 			{ 'L3MON4D3/LuaSnip' },
 			{ 'rafamadriz/friendly-snippets' },
@@ -52,49 +41,6 @@ return {
 					}
 				}
 			})
-
-
-			local cmp = require('cmp')
-			local cmp_select = { behavior = cmp.SelectBehavior.Select }
-			cmp.setup({
-				mapping = cmp.mapping.preset.insert({
-					['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-					['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<C-Space>'] = cmp.mapping.complete(),
-					['<C-u>'] = cmp.mapping.scroll_docs(-4),
-					['<C-d>'] = cmp.mapping.scroll_docs(4),
-					['<C-CR>'] = cmp.mapping.confirm({ select = true }),
-
-					-- If nothing is selected (including preselections) add a newline as usual.
-					-- If something has explicitly been selected by the user, select it.
-					["<CR>"] = cmp.mapping({
-						i = function(fallback)
-							if cmp.visible() and cmp.get_active_entry() then
-								cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-							else
-								fallback()
-							end
-						end,
-						s = cmp.mapping.confirm({ select = true }),
-						c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-					})
-				})
-			})
-
-			-- disabling cmp in comments
-			cmp.setup({
-				enabled = function()
-					local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
-					if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
-						return false
-					end
-					local context = require("cmp.config.context")
-					return not (context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment"))
-				end
-			})
-
-
 
 			lsp.set_preferences({
 				suggest_lsp_servers = false,

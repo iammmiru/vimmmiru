@@ -9,21 +9,16 @@ return {
 		end
 	},
 
-	-- use('nvim-treesitter/nvim-treesitter-context')
 	{
 		'mbbill/undotree',
 		commit = "56c684a805fe948936cda0d1b19505b84ad7e065",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
 	},
 
-	-- Auto completion
-
-	-- Debugging
 	'nvim-lua/plenary.nvim',
-	'mfussenegger/nvim-dap',
-
 	-- Terminal functionalities
 	{
 		"akinsho/toggleterm.nvim",
