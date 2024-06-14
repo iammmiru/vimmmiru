@@ -28,6 +28,7 @@ return {
 					'jdtls',
 					'pyright',
 					'bashls',
+					'yamlls',
 				},
 			})
 
@@ -155,6 +156,30 @@ return {
 					},
 				}
 			}
+
+			lsp.configure('yamlls', {
+				capabilities = {
+					textDocument = {
+						foldingRange = {
+							dynamicRegistration = false,
+							lineFoldingOnly = true,
+						},
+					},
+				},
+				settings = {
+					yaml = {
+						format = {
+							enable = true
+						},
+						schemaStore = {
+							enable = true
+						},
+						hover = true,
+						validate = true,
+					}
+				}
+			})
+
 
 			require('rust-tools').setup(rt_opts)
 			require('nvim_miru.plugins.lsp.jdtls')
