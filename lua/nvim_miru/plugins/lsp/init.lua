@@ -29,6 +29,7 @@ return {
 					'pyright',
 					'bashls',
 					'yamlls',
+					'ruff_lsp'
 				},
 			})
 
@@ -41,6 +42,37 @@ return {
 						}
 					}
 				}
+			})
+
+			local on_attach = function(client, _)
+				if client.name == 'ruff_lsp' then
+					-- Disable hover in favor of Pyright
+					client.server_capabilities.hoverProvider = false
+				end
+			end
+
+			lsp.configure('ruff_lsp', {
+				init_options = {
+					settings = {
+						args = {},
+					}
+				},
+				on_attach = on_attach
+			})
+
+			lsp.configure('pyright', {
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { '*' },
+						},
+					},
+				},
 			})
 
 			lsp.set_preferences({
