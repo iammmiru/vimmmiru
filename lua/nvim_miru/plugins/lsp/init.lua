@@ -173,7 +173,18 @@ return {
 
 			local rt_opts = {
 				server = {
-					on_attach = M.lsp_attach,
+					on_attach = function()
+						lsp.on_attach(M.lsp_attach)
+						for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+							local default_diagnostic_handler = vim.lsp.handlers[method]
+							vim.lsp.handlers[method] = function(err, result, context, config)
+								if err ~= nil and err.code == -32802 then
+									return
+								end
+								return default_diagnostic_handler(err, result, context, config)
+							end
+						end
+					end,
 					capabilities = lsp_capabilities,
 					settings = {
 						-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
