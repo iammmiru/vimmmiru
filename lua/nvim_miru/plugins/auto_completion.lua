@@ -37,6 +37,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "path" },
 					{ name = "luasnip" },
+					{ name = "crates" },
 				},
 
 				snippet = {

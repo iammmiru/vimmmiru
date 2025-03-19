@@ -1,4 +1,4 @@
-local lsp_attach = require('lsp-zero').lsp_attach
+local lsp_attach = require("nvim_miru.plugins.lsp.lsp_config")
 
 local SYSTEM = "linux"
 if vim.fn.has "mac" == 1 then
@@ -41,6 +41,6 @@ lspconfig.jdtls.setup({
         '-data', workspace_dir,
     },
     root_dir = lspconfig.util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle") or vim.fn.getcwd(),
-    on_attach = lsp_attach,
+    on_attach = lsp_attach.lsp_attach,
     capabilities = lsp_capabilities,
 })

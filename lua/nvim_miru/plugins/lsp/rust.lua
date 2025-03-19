@@ -1,41 +1,43 @@
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-require('rust-tools').setup(
+local lsp_attach = require("nvim_miru.plugins.lsp.lsp_config")
+return {
 	{
+		'mrcjkb/rustaceanvim',
+		version = '^5', -- Recommended
+		lazy = false, -- This plugin is already lazy
 		server = {
-			on_attach = function()
-				-- auto format rust files on save
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					pattern = "*.rs",
-					callback = function()
-						vim.lsp.buf.format({ timeout_ms = 200 })
-					end
-				})
-
-				-- workaround for ServerCancelled error spam
-				for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-					local default_diagnostic_handler = vim.lsp.handlers[method]
-					vim.lsp.handlers[method] = function(err, result, context, config)
-						if err ~= nil and err.code == -32802 then
-							return
-						end
-						return default_diagnostic_handler(err, result, context, config)
-					end
-				end
+			on_attach = function(client, buffer)
+				lsp_attach.lsp_attach(client, buffer)
+				vim.cmd.RustLsp('flyCheck')
 			end,
-			capabilities = lsp_capabilities,
-			settings = {
-				-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+			default_settings = {
 				["rust-analyzer"] = {
-					check = {
-						command = "clippy"
-					},
+					checkOnSave = false,
 					files = {
 						excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/" },
 					},
-				},
-			},
+				}
+			}
 		}
-
+	},
+	{
+		'saecki/crates.nvim',
+		tag = 'stable',
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require('crates').setup {
+				completion = {
+					cmp = {
+						enabled = true,
+					},
+				}
+			}
+		end,
+		lsp = {
+			enabled = true,
+			on_attach = lsp_attach.lsp_attach,
+			actions = true,
+			completion = true,
+			hover = true,
+		},
 	}
-)
+}
