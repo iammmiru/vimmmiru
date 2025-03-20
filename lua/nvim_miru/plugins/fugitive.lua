@@ -1,7 +1,6 @@
 return {
 	{
 		'tpope/vim-fugitive',
-		commit = "4a745ea72fa93bb15dd077109afbb3d1809383f2",
 		config = function()
 			vim.keymap.set("n", "<leader>gits", require('telescope.builtin').git_status, { desc = 'show git status' })
 			vim.keymap.set("n", "<leader>gitc", require('telescope.builtin').git_commits, { desc = 'show git commits' })

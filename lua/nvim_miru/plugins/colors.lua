@@ -4,7 +4,6 @@ return {
 		-- Optionally install Lush. Allows for more configuration or extending the colorscheme
 		-- If you don't want to install lush, make sure to set g:zenbones_compat = 1
 		-- In Vim, compat mode is turned on as Lush only works in Neovim.
-		commit = "5746d0277439fe264108a2ecace83f09f1b57e1f",
 		dependencies = "rktjmp/lush.nvim",
 		config = function()
 			vim.opt.cursorline = true
