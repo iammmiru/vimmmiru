@@ -5,6 +5,7 @@ return {
 		version = '^5', -- Recommended
 		lazy = false, -- This plugin is already lazy
 		server = {
+			capabilities = require('cmp_nvim_lsp').default_capabilities(),
 			on_attach = function(client, buffer)
 				lsp_attach.lsp_attach(client, buffer)
 				vim.cmd.RustLsp('flyCheck')
