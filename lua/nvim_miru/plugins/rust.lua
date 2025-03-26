@@ -4,21 +4,24 @@ return {
 		'mrcjkb/rustaceanvim',
 		version = '^5', -- Recommended
 		lazy = false, -- This plugin is already lazy
-		server = {
-			capabilities = require('cmp_nvim_lsp').default_capabilities(),
-			on_attach = function(client, buffer)
-				lsp_attach.lsp_attach(client, buffer)
-				vim.cmd.RustLsp('flyCheck')
-			end,
-			default_settings = {
-				["rust-analyzer"] = {
-					checkOnSave = false,
-					files = {
-						excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/" },
-					},
+		init = function()
+			vim.g.rustaceanvim = {
+				server = {
+					capabilities = require('cmp_nvim_lsp').default_capabilities(),
+					on_attach = function(client, buffer)
+						lsp_attach.lsp_attach(client, buffer)
+					end,
+					default_settings = {
+						["rust-analyzer"] = {
+							checkOnSave = true,
+							files = {
+								-- excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/" },
+							},
+						}
+					}
 				}
 			}
-		}
+		end
 	},
 	{
 		'saecki/crates.nvim',

@@ -5,8 +5,6 @@ return {
 			-- LSP Support
 			{ 'williamboman/mason.nvim' },
 			{ 'williamboman/mason-lspconfig.nvim' },
-			-- Rust Support
-			require("nvim_miru.plugins.lsp.rust"),
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
