@@ -15,6 +15,22 @@ vim.keymap.set(
 	end,
 	{ silent = true, buffer = bufnr }
 )
+vim.keymap.set(
+	"n",
+	"<leader>rt",
+	function()
+		vim.cmd.RustLsp({ 'run' })
+	end,
+	{ silent = true, buffer = bufnr }
+)
+vim.keymap.set(
+	"n",
+	"<leader>ra",
+	function()
+		vim.cmd.RustLsp({ 'runnables' })
+	end,
+	{ silent = true, buffer = bufnr }
+)
 
 for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
      local default_diagnostic_handler = vim.lsp.handlers[method]
