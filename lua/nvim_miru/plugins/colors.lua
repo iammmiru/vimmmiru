@@ -1,6 +1,7 @@
+---@diagnostic disable: undefined-global
 return {
 	{
-		"mcchrish/zenbones.nvim",
+		"zenbones-theme/zenbones.nvim",
 		-- Optionally install Lush. Allows for more configuration or extending the colorscheme
 		-- If you don't want to install lush, make sure to set g:zenbones_compat = 1
 		-- In Vim, compat mode is turned on as Lush only works in Neovim.
@@ -21,8 +22,16 @@ return {
 			-- vim.opt.laststatus=2
 			-- vim.opt.statusline=
 			-- vim.cmd [[set statusline+=%#NormalColor#%{(mode()=='n')?'\ \ NORMAL\ ':''}]]
-			vim.keymap.set("n", "<leader>bt", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>',
-			    { noremap = true, silent = true, desc = "[B]ackground color [T]oggle" })
-			end,
+			-- vim.keymap.set("n", "<leader>bt", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>',
+			--     { noremap = true, silent = true, desc = "[B]ackground color [T]oggle" })
+			local lush = require("lush")
+			local base = require("zenbones")
+			local specs = lush.parse(function()
+				return {
+					Boolean { base.Boolean, fg = "#ecf7b3" }
+				}
+			end)
+			lush.apply(lush.compile(specs))
+		end,
 	},
 }

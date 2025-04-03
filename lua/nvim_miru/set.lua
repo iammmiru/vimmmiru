@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.opt.termguicolors = true
+vim.o.background = "dark"
 vim.opt.guicursor = "n-c-v:block-nCursor"
 -- vim.opt.guicursor = ""
 
@@ -38,8 +39,6 @@ vim.opt.textwidth = 80
 vim.opt.wrapmargin = 80
 vim.opt.wrap = true
 vim.opt.linebreak = true
-
-vim.o.background = "dark"
 
 vim.o.title = true
 -- vim.cmd [[set titlestring=%F\ \ %{strftime('%d.%m.%Y\ %H:%M',getftime(expand('%')))}]]
