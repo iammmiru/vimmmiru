@@ -2,7 +2,7 @@ local lsp_attach = require("nvim_miru.plugins.lsp.lsp_config")
 return {
 	{
 		'mrcjkb/rustaceanvim',
-		version = '^5', -- Recommended
+		version = '^6', -- Recommended
 		lazy = false, -- This plugin is already lazy
 		init = function()
 			vim.g.rustaceanvim = {

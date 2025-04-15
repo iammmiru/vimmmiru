@@ -36,7 +36,6 @@ return {
 					'bashls',
 					'yamlls',
 					'ruff',
-					'rust_analyzer'
 				},
 				handlers = {
 					function(server_name)
