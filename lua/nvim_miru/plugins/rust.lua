@@ -67,12 +67,25 @@ return {
 							end
 						end
 					end,
-					default_settings = {
+					standalone = false,
+					cmd_env = {
+						RA_LOG = "proc-macro=debug",
+					},
+					settings = {
 						["rust-analyzer"] = {
+							cargo = {
+								features = "",
+								noDefaultFeatures = false,
+							},
 							checkOnSave = true,
 							files = {
+								watcher = "client"
 								-- excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/" },
 							},
+							procMacro = {
+								enabled = true,
+							},
+							memoryUsageLimitMb = 2048,
 						}
 					}
 				}
