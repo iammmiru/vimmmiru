@@ -9,6 +9,29 @@ return {
 		require("nvim_miru.plugins.codecompanion.mcphub_config"),
 	},
 	opts = {
+		strategies = {
+			chat = {
+				adapter = "my_gpt_4_1",
+				keymaps = {
+					send = {
+						modes = { n = "<CR>", i = "<S-CR>" },
+					}
+				}
+			},
+			inline = {
+				adapter = "my_gpt_4_1",
+				keymaps = {
+					accept_change = {
+						modes = { n = "ga" },
+						description = "Accept the suggested change",
+					},
+					reject_change = {
+						modes = { n = "gr" },
+						description = "Reject the suggested change",
+					},
+				},
+			},
+		},
 		display = {
 			action_palette = {
 				width = 95,
@@ -69,35 +92,39 @@ return {
 				},
 			},
 		},
-		strategies = {
-			chat = {
-				adapter = "copilot",
-				keymaps = {
-					send = {
-						modes = { n = "<CR>", i = "<S-CR>" },
-					}
-				}
-			},
-			inline = {
-				adapter = "copilot",
-				keymaps = {
-					accept_change = {
-						modes = { n = "ga" },
-						description = "Accept the suggested change",
-					},
-					reject_change = {
-						modes = { n = "gr" },
-						description = "Reject the suggested change",
-					},
-				},
-			},
-		},
 		adapters = {
-			copilot = function()
+			my_gemini_2_5_pro = function()
 				return require("codecompanion.adapters").extend("copilot", {
 					schema = {
 						model = {
 							default = "gemini-2.5-pro",
+						},
+					},
+				})
+			end,
+			my_claude_3_7 = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					schema = {
+						model = {
+							default = "claude-3.7-sonnet",
+						},
+					},
+				})
+			end,
+			my_gpt_4_1 = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					schema = {
+						model = {
+							default = "gpt-4.1",
+						},
+					},
+				})
+			end,
+			my_gpt_4o_mini = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					schema = {
+						model = {
+							default = "4o-mini",
 						},
 					},
 				})
