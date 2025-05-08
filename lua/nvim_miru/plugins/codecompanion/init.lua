@@ -6,9 +6,21 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"zbirenbaum/copilot.lua",
+		require("nvim_miru.plugins.codecompanion.mcphub_config"),
 	},
 	opts = {
 		display = {
+			action_palette = {
+				width = 95,
+				height = 10,
+				prompt = "Prompt ",      -- Prompt used for interactive LLM calls
+				provider = "default",    -- Can be "default", "telescope", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
+				opts = {
+					show_default_actions = true, -- Show the default actions in the action palette?
+					show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+				},
+			},
+
 			diff = {
 				enabled = true,
 				close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
@@ -34,7 +46,7 @@ return {
 				-- Options to customize the UI of the chat buffer
 				window = {
 					layout = "vertical", -- float|vertical|horizontal|buffer
-					position = "right", -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
+					position = "left", -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
 					border = "single",
 					height = 0.8,
 					width = 0.3,
@@ -62,7 +74,7 @@ return {
 				adapter = "copilot",
 				keymaps = {
 					send = {
-						modes = { n = "<C-CR>", i = "<C-CR>" },
+						modes = { n = "<CR>", i = "<S-CR>" },
 					}
 				}
 			},
@@ -90,10 +102,33 @@ return {
 					},
 				})
 			end,
-		}
+		},
+		extensions = {
+			mcphub = {
+				callback = "mcphub.extensions.codecompanion",
+				opts = {
+					show_result_in_chat = true, -- Show mcp tool results in chat
+					make_vars = true, -- Convert resources to #variables
+					make_slash_commands = true, -- Add prompts as /slash commands
+				},
+			},
+		},
 	},
 	init = function()
-		require("nvim_miru.plugins.codecompanion.fidget-spinner"):init()
+		local fidget_spinner_ok, fidget_spinner = pcall(require, "nvim_miru.plugins.codecompanion.fidget-spinner")
+		if fidget_spinner_ok then
+			fidget_spinner:init()
+		else
+			vim.notify("Failed to load nvim_miru.plugins.codecompanion.fidget-spinner", vim.log.levels.WARN)
+		end
+
+		local chat_spinner_ok, chat_spinner = pcall(require, "nvim_miru.plugins.codecompanion.chat-spinner")
+		if chat_spinner_ok then
+			chat_spinner:init()
+		else
+			vim.notify("Failed to load nvim_miru.plugins.codecompanion.spinner", vim.log.levels.WARN)
+		end
+
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "CodeCompanionChatSubmitted",
 			callback = function()
