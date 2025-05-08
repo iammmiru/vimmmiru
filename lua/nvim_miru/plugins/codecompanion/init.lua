@@ -60,6 +60,11 @@ return {
 		strategies = {
 			chat = {
 				adapter = "copilot",
+				keymaps = {
+					send = {
+						modes = { n = "<C-CR>", i = "<C-CR>" },
+					}
+				}
 			},
 			inline = {
 				adapter = "copilot",
@@ -89,13 +94,20 @@ return {
 	},
 	init = function()
 		require("nvim_miru.plugins.codecompanion.fidget-spinner"):init()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "CodeCompanionChatSubmitted",
+			callback = function()
+				vim.cmd("stopinsert")
+			end,
+			desc = "Exit insert mode after submitting to CodeCompanionChat",
+		})
 		-- require('mini.diff').setup()
 	end,
 	keys = {
 		{
 			"<leader>aa",
 			"<cmd>CodeCompanionChat Toggle<CR>",
-			mode = {"n", "v"},
+			mode = { "n", "v" },
 			noremap = true,
 			silent = true,
 			desc = "Open/Toggle CodeCompanion Chat",
@@ -103,7 +115,7 @@ return {
 		{
 			"<leader>ac",
 			"<cmd>CodeCompanionActions<CR>",
-			mode = {"n", "v"},
+			mode = { "n", "v" },
 			noremap = true,
 			silent = true,
 			desc = "Open CodeCompanionAcitions",
