@@ -37,7 +37,4 @@
         "/Users/mirulee/.config/nvim/after",
         "${3rd}/luassert/library"
     ],
-    "diagnostics.globals": [
-        "vim"
-    ]
 }
