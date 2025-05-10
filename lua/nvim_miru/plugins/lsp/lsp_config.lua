@@ -17,8 +17,6 @@ function M.lsp_attach(_, bufnr)
 
 	nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
-	nmap("]d", vim.diagnostic.goto_next, 'Go to next error')
-	nmap("[d", vim.diagnostic.goto_prev, 'Go to previous error')
 	nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 	nmap('gv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
 		'[G]oto definition [V]ertical split')

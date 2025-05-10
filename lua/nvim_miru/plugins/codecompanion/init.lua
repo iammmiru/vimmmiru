@@ -5,7 +5,7 @@ return {
 		"j-hui/fidget.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		require("nvim_miru.plugins.codecompanion.copilot"),
+		"zbirenbaum/copilot.lua",
 		require("nvim_miru.plugins.codecompanion.mcphub_config"),
 		require("nvim_miru.plugins.codecompanion.vectorcode"),
 		"ravitemer/codecompanion-history.nvim",

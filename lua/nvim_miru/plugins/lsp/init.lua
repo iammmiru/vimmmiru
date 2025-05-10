@@ -22,7 +22,7 @@ return {
 			vim.api.nvim_create_autocmd('LspAttach', {
 				desc = "LSP actions",
 				callback = function(event)
-					lsp_attach(event.client, event.buf)
+					lsp_attach(_, event.buf)
 				end
 			})
 
@@ -36,6 +36,7 @@ return {
 					'yamlls',
 					'ruff',
 				},
+				automatic_enable = true,
 			})
 
 			vim.diagnostic.config({

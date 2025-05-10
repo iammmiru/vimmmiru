@@ -25,7 +25,7 @@ return {
 				}),
 				-- disabling cmp in comments
 				enabled = function()
-					local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+					local in_prompt = vim.bo.buftype == 'prompt'
 					if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
 						return false
 					end
@@ -34,11 +34,12 @@ return {
 				end,
 
 				sources = {
-					{ name = "buffer" },
-					{ name = "nvim_lsp" },
-					{ name = "path" },
-					{ name = "luasnip" },
-					{ name = "crates" },
+					{ name = "buffer",   group_index = 3 },
+					{ name = "nvim_lsp", group_index = 1 },
+					{ name = "path",     group_index = 3 },
+					{ name = "luasnip",  group_index = 3 },
+					{ name = "crates",   group_index = 3 },
+					{ name = "copilot",  group_index = 2 },
 				},
 
 				snippet = {
