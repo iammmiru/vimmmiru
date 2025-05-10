@@ -7,6 +7,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"zbirenbaum/copilot.lua",
 		require("nvim_miru.plugins.codecompanion.mcphub_config"),
+		require("nvim_miru.plugins.codecompanion.vectorcode"),
 		"ravitemer/codecompanion-history.nvim",
 	},
 	opts = {
@@ -163,8 +164,12 @@ return {
 					-- Keymap to save the current chat manually
 					save_chat_keymap = "sc",
 				}
+			},
+			vectorcode = {
+				opts = {
+					add_tool = true,
+				}
 			}
-
 		},
 	},
 	init = function()
