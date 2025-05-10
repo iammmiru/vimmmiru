@@ -5,35 +5,12 @@ return {
 		"j-hui/fidget.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		"zbirenbaum/copilot.lua",
+		require("nvim_miru.plugins.codecompanion.copilot"),
 		require("nvim_miru.plugins.codecompanion.mcphub_config"),
 		require("nvim_miru.plugins.codecompanion.vectorcode"),
 		"ravitemer/codecompanion-history.nvim",
 	},
 	opts = {
-		strategies = {
-			chat = {
-				adapter = "my_gpt_4_1",
-				keymaps = {
-					send = {
-						modes = { n = "<CR>", i = "<S-CR>" },
-					}
-				}
-			},
-			inline = {
-				adapter = "my_gpt_4_1",
-				keymaps = {
-					accept_change = {
-						modes = { n = "ga" },
-						description = "Accept the suggested change",
-					},
-					reject_change = {
-						modes = { n = "gr" },
-						description = "Reject the suggested change",
-					},
-				},
-			},
-		},
 		log_level = "DEBUG",
 		display = {
 			action_palette = {
@@ -98,6 +75,7 @@ return {
 		adapters = {
 			my_gemini_2_5_pro = function()
 				return require("codecompanion.adapters").extend("copilot", {
+					name = "my_gemini_2_5_pro",
 					schema = {
 						model = {
 							default = "gemini-2.5-pro",
@@ -107,6 +85,7 @@ return {
 			end,
 			my_claude_3_7 = function()
 				return require("codecompanion.adapters").extend("copilot", {
+					name = "my_claude_3_7",
 					schema = {
 						model = {
 							default = "claude-3.7-sonnet",
@@ -116,6 +95,7 @@ return {
 			end,
 			my_gpt_4_1 = function()
 				return require("codecompanion.adapters").extend("copilot", {
+					name = "my_gpt_4_1",
 					schema = {
 						model = {
 							default = "gpt-4.1",
@@ -125,6 +105,7 @@ return {
 			end,
 			my_gpt_4o_mini = function()
 				return require("codecompanion.adapters").extend("copilot", {
+					name = "my_gpt_4o_mini",
 					schema = {
 						model = {
 							default = "4o-mini",
@@ -132,6 +113,29 @@ return {
 					},
 				})
 			end,
+		},
+		strategies = {
+			chat = {
+				adapter = "my_gpt_4_1",
+				keymaps = {
+					send = {
+						modes = { n = "<CR>", i = "<S-CR>" },
+					}
+				}
+			},
+			inline = {
+				adapter = "my_gpt_4_1",
+				keymaps = {
+					accept_change = {
+						modes = { n = "ga" },
+						description = "Accept the suggested change",
+					},
+					reject_change = {
+						modes = { n = "gr" },
+						description = "Reject the suggested change",
+					},
+				},
+			},
 		},
 		extensions = {
 			mcphub = {
@@ -154,7 +158,7 @@ return {
 					---When chat is cleared with `gx` delete the chat from history
 					delete_on_clearing_chat = false,
 					-- Picker interface ("telescope", "snacks" or "default")
-					picker = "telescope",
+					picker = "snacks",
 					---Enable detailed logging for history extension
 					enable_logging = false,
 					---Directory path to save the chats
