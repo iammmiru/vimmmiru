@@ -6,8 +6,8 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"zbirenbaum/copilot.lua",
-		require("nvim_miru.plugins.codecompanion.mcphub_config"),
-		require("nvim_miru.plugins.codecompanion.vectorcode"),
+		require("vimmmiru.plugins.codecompanion.mcphub_config"),
+		require("vimmmiru.plugins.codecompanion.vectorcode"),
 		"ravitemer/codecompanion-history.nvim",
 	},
 	opts = {
@@ -177,18 +177,18 @@ return {
 		},
 	},
 	init = function()
-		local fidget_spinner_ok, fidget_spinner = pcall(require, "nvim_miru.plugins.codecompanion.fidget-spinner")
+		local fidget_spinner_ok, fidget_spinner = pcall(require, "vimmmiru.plugins.codecompanion.fidget-spinner")
 		if fidget_spinner_ok then
 			fidget_spinner:init()
 		else
-			vim.notify("Failed to load nvim_miru.plugins.codecompanion.fidget-spinner", vim.log.levels.WARN)
+			vim.notify("Failed to load vimmmiru.plugins.codecompanion.fidget-spinner", vim.log.levels.WARN)
 		end
 
-		local chat_spinner_ok, chat_spinner = pcall(require, "nvim_miru.plugins.codecompanion.chat-spinner")
+		local chat_spinner_ok, chat_spinner = pcall(require, "vimmmiru.plugins.codecompanion.chat-spinner")
 		if chat_spinner_ok then
 			chat_spinner:init()
 		else
-			vim.notify("Failed to load nvim_miru.plugins.codecompanion.spinner", vim.log.levels.WARN)
+			vim.notify("Failed to load vimmmiru.plugins.codecompanion.spinner", vim.log.levels.WARN)
 		end
 
 		vim.api.nvim_create_autocmd("User", {

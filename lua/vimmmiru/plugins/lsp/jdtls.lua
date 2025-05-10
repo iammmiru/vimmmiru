@@ -1,4 +1,4 @@
-local lsp_attach = require("nvim_miru.plugins.lsp.lsp_config")
+local lsp_attach = require("vimmmiru.plugins.lsp.lsp_config")
 
 local SYSTEM = "linux"
 if vim.fn.has "mac" == 1 then

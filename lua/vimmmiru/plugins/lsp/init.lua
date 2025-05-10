@@ -17,7 +17,7 @@ return {
 				require('cmp_nvim_lsp').default_capabilities()
 			)
 
-			local lsp_attach = require("nvim_miru.plugins.lsp.lsp_config").lsp_attach
+			local lsp_attach = require("vimmmiru.plugins.lsp.lsp_config").lsp_attach
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				desc = "LSP actions",
@@ -43,7 +43,7 @@ return {
 				virtual_text = false,
 			})
 
-			vim.lsp.config('lua_ls', require("nvim_miru.plugins.lsp.lua_ls"))
+			vim.lsp.config('lua_ls', require("vimmmiru.plugins.lsp.lua_ls"))
 
 			vim.lsp.config("ruff", {
 				init_options = {
@@ -97,7 +97,7 @@ return {
 				}
 			})
 
-			require('nvim_miru.plugins.lsp.jdtls')
+			require('vimmmiru.plugins.lsp.jdtls')
 		end,
 	},
 }

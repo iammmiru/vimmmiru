@@ -1,1 +1,1 @@
-require("nvim_miru")
+require("vimmmiru")

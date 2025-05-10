@@ -1,5 +1,5 @@
-require("nvim_miru.set")
-require("nvim_miru.remap")
+require("vimmmiru.set")
+require("vimmmiru.remap")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -14,4 +14,4 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("nvim_miru.plugins")
+require("lazy").setup("vimmmiru.plugins")
