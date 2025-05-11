@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.opt.termguicolors = true
-vim.o.background = "dark"
 vim.opt.guicursor = "n-c-v:block-nCursor"
 -- vim.opt.guicursor = ""
 
