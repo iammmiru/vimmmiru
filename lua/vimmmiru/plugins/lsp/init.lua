@@ -22,7 +22,10 @@ return {
 			vim.api.nvim_create_autocmd('LspAttach', {
 				desc = "LSP actions",
 				callback = function(event)
-					lsp_attach(_, event.buf)
+					local client = vim.lsp.get_client_by_id(event.data.client_id).name
+					if client ~= 'rust-analyzer' and client ~= 'copilot' then
+						lsp_attach(_, event.buf)
+					end
 				end
 			})
 
@@ -36,7 +39,7 @@ return {
 					'yamlls',
 					'ruff',
 				},
-				automatic_enable = true,
+				automatic_enable = true
 			})
 
 			vim.diagnostic.config({

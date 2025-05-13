@@ -40,6 +40,7 @@ return {
 				palettes = {
 					nordfox = {
 						comment = "#728f97",
+						white = palette.white.dim,
 					},
 				}
 			})

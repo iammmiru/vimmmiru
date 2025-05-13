@@ -71,7 +71,7 @@ return {
 					cmd_env = {
 						RA_LOG = "proc-macro=debug",
 					},
-					settings = {
+					default_settings = {
 						["rust-analyzer"] = {
 							cargo = {
 								features = "",
