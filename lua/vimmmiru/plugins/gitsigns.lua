@@ -10,6 +10,11 @@ return {
 				topdelete = { text = '‾' },
 				changedelete = { text = '~' },
 			},
+		},
+		on_attach = {
+			on_attach = function(bufnr)
+				if vim.bo[bufnr].filetype == "netrw" then return false end
+			end,
 		}
 	}
 }
