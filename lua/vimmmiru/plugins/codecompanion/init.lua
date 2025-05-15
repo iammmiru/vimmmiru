@@ -73,9 +73,12 @@ return {
 			},
 		},
 		adapters = {
-			my_gemini_2_5_pro = function()
+			opts = {
+				show_defaults = false,
+			},
+			copilot_gemini_2_5_pro = function()
 				return require("codecompanion.adapters").extend("copilot", {
-					name = "my_gemini_2_5_pro",
+					name = "copilot_gemini_2_5_pro",
 					schema = {
 						model = {
 							default = "gemini-2.5-pro",
@@ -83,9 +86,19 @@ return {
 					},
 				})
 			end,
-			my_claude_3_7 = function()
+			copilot_gemini_2_0_flash = function()
 				return require("codecompanion.adapters").extend("copilot", {
-					name = "my_claude_3_7",
+					name = "copilot_gemini_2_0_flash",
+					schema = {
+						model = {
+							default = "gemini-2.0-flash-001",
+						},
+					},
+				})
+			end,
+			copilot_claude_3_7 = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot_claude_3_7",
 					schema = {
 						model = {
 							default = "claude-3.7-sonnet",
@@ -93,9 +106,29 @@ return {
 					},
 				})
 			end,
-			my_gpt_4_1 = function()
+			copilot_claude_3_5 = function()
 				return require("codecompanion.adapters").extend("copilot", {
-					name = "my_gpt_4_1",
+					name = "copilot_claude_3_5",
+					schema = {
+						model = {
+							default = "claude-3.5-sonnet",
+						},
+					},
+				})
+			end,
+			copilot_claude_3_7_thought = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot_claude_3_7_thought",
+					schema = {
+						model = {
+							default = "claude-3.7-sonnet-thought",
+						},
+					},
+				})
+			end,
+			copilot_gpt_4_1 = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot_gpt_4_1",
 					schema = {
 						model = {
 							default = "gpt-4.1",
@@ -103,12 +136,12 @@ return {
 					},
 				})
 			end,
-			my_gpt_4o_mini = function()
+			copilot_gpt_o4_mini = function()
 				return require("codecompanion.adapters").extend("copilot", {
-					name = "my_gpt_4o_mini",
+					name = "copilot_gpt_o4_mini",
 					schema = {
 						model = {
-							default = "4o-mini",
+							default = "o4-mini",
 						},
 					},
 				})
@@ -116,7 +149,7 @@ return {
 		},
 		strategies = {
 			chat = {
-				adapter = "my_gpt_4_1",
+				adapter = "copilot_claude_3_7",
 				keymaps = {
 					send = {
 						modes = { n = "<CR>", i = "<S-CR>" },
@@ -124,7 +157,7 @@ return {
 				}
 			},
 			inline = {
-				adapter = "my_gpt_4_1",
+				adapter = "copilot_claude_3_7",
 				keymaps = {
 					accept_change = {
 						modes = { n = "ga" },
