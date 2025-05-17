@@ -58,15 +58,27 @@ function M.lsp_attach(_, bufnr)
 		callback = function()
 			local opts = {
 				focusable = false,
-				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
 				border = 'rounded',
 				source = 'always',
-				prefix = ' ',
+				-- prefix = ' ',
 				scope = 'cursor',
 			}
 			vim.diagnostic.open_float(nil, opts)
 		end
 	})
+
+	nmap('<leader>fd', function()
+		local opts = {
+			-- focusable = false,
+			-- close_events = { "BufLeave", "InsertEnter", "FocusLost", "WinClosed" },
+			border = 'rounded',
+			source = 'always',
+			-- prefix = ' ',
+			scope = 'cursor',
+		}
+		vim.diagnostic.open_float(nil, opts)
+	end, "[F]ocus into [D]iagnostic float window"
+	)
 end
 
 return M
