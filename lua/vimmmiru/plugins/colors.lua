@@ -30,9 +30,6 @@ return {
 						["Type"] = { fg = teal.bright },
 						["@property"] = { fg = palette.blue.bright },
 						["String"] = { fg = palette.green.bright },
-						["NormalFloat"] = { bg = "NONE" },
-						["FloatBorder"] = { bg = "NONE" },
-						["Pmenu"] = { bg = "NONE" },
 						["Constant"] = { fg = teal.dim },
 						["Visual"] = { bg = palette.black.bright },
 					}
@@ -46,24 +43,6 @@ return {
 			})
 
 			vim.cmd("colorscheme nordfox")
-			-- vim.cmd [[hi NormalFloat guibg=NONE ctermbg=NONE]]
-			-- vim.cmd [[hi FloatBorder guibg=NONE ctermbg=NONE]]
-			-- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
-			-- vim.cmd [[hi LineNr guibg=NONE ctermbg=NONE]]
-			-- vim.cmd [[hi NonText guibg=NONE ctermbg=NONE]]
-			-- vim.cmd [[hi EndOfBuffer guibg=NONE ctermbg=NONE]]
-			-- vim.cmd [[hi NormalColor ctermbg=NONE ctermfg=NONE]]
-
-			-- vim.cmd [[hi Cursorline guibg=#314557]]
-			-- vim.cmd [[hi Comment guifg=#728f96]]
-			-- local lush = require("lush")
-			-- local base = require("zenbones")
-			-- local specs = lush.parse(function()
-			-- 	return {
-			-- 		Boolean { base.Boolean, fg = "#ecf7b3" }
-			-- 	}
-			-- end)
-			-- lush.apply(lush.compile(specs))
 		end,
 	},
 }
