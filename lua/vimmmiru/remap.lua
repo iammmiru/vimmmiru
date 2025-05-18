@@ -21,7 +21,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
 vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P')
 
-vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
@@ -43,11 +42,11 @@ vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>zz', { silent = true, desc = "Move t
 vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>zz', { silent = true, desc = "Move to prev in quickifx list" })
 
 -- Unmap some annoying behaviors
-vim.keymap.set("n", "L", "")
-vim.keymap.set("n", "H", "")
-vim.keymap.set("n", "J", "")
-vim.keymap.set({ "n", "t", "i", "v" }, "<C-w>q", "")
-vim.keymap.set({ "n", "t", "i", "v" }, "<C-w><C-q>", "")
+vim.keymap.set("n", "L", "<nop>")
+vim.keymap.set("n", "H", "<nop>")
+vim.keymap.set("n", "J", "<nop>")
+vim.keymap.set({ "n", "t", "i", "v" }, "<C-w>q", "<nop>")
+vim.keymap.set({ "n", "t", "i", "v" }, "<C-w><C-q>", "<nop>")
 
 -- remove search highlight
 vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", { desc = "Remove search highlight" })
@@ -57,3 +56,9 @@ vim.keymap.set({ "n", "v" }, "g<C-s>", "g<C-a>", { silent = true })
 
 -- copy current directory path to clipboard
 vim.keymap.set("n", "cd", ":let @+ = expand('%')<CR>", { silent = true, desc = "Copy the current directory path to clipboard"})
+
+-- remove keymaps that'll be replaced by LSP keymap
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gri")
+vim.keymap.del({"n", "x"}, "gra")

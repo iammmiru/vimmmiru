@@ -7,39 +7,42 @@ function M.lsp_attach(_, bufnr)
 	--
 	-- In this case, we create a function that lets us more easily define mappings specific
 	-- for LSP related items. It sets the mode, buffer and description for us each time.
-	local nmap = function(keys, func, desc)
+	local lsp_keymap = function(modes, keys, func, desc)
+		if #modes == 1 then
+			modes = { modes }
+		end
 		if desc then
 			desc = 'LSP: ' .. desc
 		end
 
-		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+		vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+	lsp_keymap('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
-	nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-	nmap('gv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
+	lsp_keymap('n', 'gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+	lsp_keymap('n', 'gv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
 		'[G]oto definition [V]ertical split')
-	nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-	nmap('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-	nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-	nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-	nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	lsp_keymap('n', 'gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+	lsp_keymap('n', 'gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+	lsp_keymap('n', '<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+	lsp_keymap('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+	lsp_keymap('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
 	-- See `:help K` for why this keymap
-	nmap('K', function()
+	lsp_keymap('n', 'K', function()
 		vim.lsp.buf.hover({ border = "rounded", max_width = 120 })
 	end, 'Hover Documentation')
-	nmap('<C-k>', function()
+	lsp_keymap('n', '<C-k>', function()
 		vim.lsp.buf.signature_help({ border = "rounded", max_width = 120 })
 	end, 'Signature Documentation')
-	nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+	lsp_keymap({"n", "x"},'<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
 	-- Lesser used LSP functionality
-	nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-	nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-	nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-	nmap('<leader>wl', function()
+	lsp_keymap('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+	lsp_keymap('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+	lsp_keymap('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+	lsp_keymap('n', '<leader>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, '[W]orkspace [L]ist Folders')
 
@@ -67,7 +70,7 @@ function M.lsp_attach(_, bufnr)
 		end
 	})
 
-	nmap('<leader>fd', function()
+	lsp_keymap('n', '<leader>fd', function()
 		local opts = {
 			-- focusable = false,
 			-- close_events = { "BufLeave", "InsertEnter", "FocusLost", "WinClosed" },

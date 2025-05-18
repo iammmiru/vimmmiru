@@ -2,7 +2,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		keys = function()
-			vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
+			vim.keymap.set('n', '<leader>/', require('telescope.builtin').oldfiles,
 				{ desc = '[?] Find recently opened files' })
 			vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,
 				{ desc = '[ ] Find existing buffers' })
