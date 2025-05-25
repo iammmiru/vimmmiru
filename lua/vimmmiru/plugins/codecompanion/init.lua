@@ -75,7 +75,13 @@ return {
 		adapters = {
 			opts = {
 				show_defaults = false,
+				show_model_choices = true,
 			},
+			copilot = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot",
+				})
+			end,
 			copilot_gemini_2_5_pro = function()
 				return require("codecompanion.adapters").extend("copilot", {
 					name = "copilot_gemini_2_5_pro",
@@ -102,6 +108,16 @@ return {
 					schema = {
 						model = {
 							default = "claude-3.7-sonnet",
+						},
+					},
+				})
+			end,
+			copilot_claude_4 = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot_claude_4",
+					schema = {
+						model = {
+							default = "claude-sonnet-4",
 						},
 					},
 				})
@@ -136,9 +152,9 @@ return {
 					},
 				})
 			end,
-			copilot_gpt_o4_mini = function()
+			copilot_o4_mini = function()
 				return require("codecompanion.adapters").extend("copilot", {
-					name = "copilot_gpt_o4_mini",
+					name = "copilot_o4_mini",
 					schema = {
 						model = {
 							default = "o4-mini",
@@ -146,10 +162,30 @@ return {
 					},
 				})
 			end,
+			copilot_gpt_4o = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot_gpt_4o",
+					schema = {
+						model = {
+							default = "gpt-4o",
+						},
+					},
+				})
+			end,
+			copilot_gpt_4o_mini = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					name = "copilot_gpt_4o_mini",
+					schema = {
+						model = {
+							default = "gpt-4o-mini",
+						},
+					},
+				})
+			end,
 		},
 		strategies = {
 			chat = {
-				adapter = "copilot_claude_3_7",
+				adapter = "copilot_gpt_4_1",
 				keymaps = {
 					send = {
 						modes = { n = "<CR>", i = "<S-CR>" },
@@ -185,9 +221,9 @@ return {
 					-- Keymap to open history from chat buffer (default: gh)
 					keymap = "gh",
 					-- Automatically generate titles for new chats
-					auto_generate_title = true,
+					auto_generate_title = false,
 					---On exiting and entering neovim, loads the last chat on opening chat
-					continue_last_chat = true,
+					continue_last_chat = false,
 					---When chat is cleared with `gx` delete the chat from history
 					delete_on_clearing_chat = false,
 					-- Picker interface ("telescope", "snacks" or "default")
