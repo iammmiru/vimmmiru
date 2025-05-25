@@ -1,6 +1,10 @@
 return {
 	{
 		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+		},
 		keys = function()
 			vim.keymap.set('n', '<leader>/', require('telescope.builtin').oldfiles,
 				{ desc = 'Telescope: [/] Find recently opened files' })
@@ -13,7 +17,7 @@ return {
 				{ desc = 'Telescope: [S]earch [H]elp' })
 			vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
 				{ desc = 'Telescope: [S]earch current [W]ord' })
-			vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep,
+			vim.keymap.set('n', '<leader>sg', require('vimmmiru.plugins.telescope.multigrep').live_multigrep,
 				{ desc = 'Telescope: [S]earch by [G]rep' })
 			vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics,
 				{ desc = 'Telescope: [S]earch [D]iagnostics' })
@@ -27,6 +31,9 @@ return {
 				{ desc = 'Telescope: [S]how [K]eymaps' })
 		end,
 		opts = {
+			extensions = {
+				fzf = {}
+			},
 			defaults = {
 				layout_config = {
 					width = 0.9,
@@ -43,6 +50,10 @@ return {
 				},
 				initial_mode = 'normal'
 			},
-		}
+		},
+		config = function (_, opts)
+			require('telescope').setup(opts)
+			require('telescope').load_extension('fzf')
+		end
 	}
 }
