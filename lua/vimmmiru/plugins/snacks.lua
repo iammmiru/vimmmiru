@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global, undefined-doc-name
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -32,4 +33,13 @@ return {
 			}
 		}
 	},
+	config = function(_, opts)
+		require("snacks").setup(opts)
+
+		vim.api.nvim_create_user_command(
+			"NotiHistory",
+			function() require("snacks").notifier.show_history() end,
+			{ desc = "Show Snacks Notifier History" }
+		)
+	end,
 }

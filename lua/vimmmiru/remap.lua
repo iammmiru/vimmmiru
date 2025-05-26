@@ -45,6 +45,7 @@ vim.keymap.set("n", "H", "<nop>")
 vim.keymap.set("n", "J", "<nop>")
 vim.keymap.set({ "n", "t", "i", "v" }, "<C-w>q", "<nop>")
 vim.keymap.set({ "n", "t", "i", "v" }, "<C-w><C-q>", "<nop>")
+vim.keymap.set("n", "q:", "<nop>")
 
 -- remove search highlight
 vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", { desc = "Remove search highlight" })
