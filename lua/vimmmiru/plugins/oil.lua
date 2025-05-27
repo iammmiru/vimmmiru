@@ -12,11 +12,15 @@ return {
 		},
 		view_options = {
 			show_hidden = true,
-			is_always_hidden = function (name, _)
+			is_always_hidden = function(name, _)
 				-- hide .DS_Store
 				local m = name:match("^%.DS_Store$")
 				return m ~= nil
 			end
+		},
+		keymaps = {
+			["`"] = false,
+			["cd"] = { "actions.cd", mode = "n" }
 		}
 	},
 	-- Optional dependencies
@@ -27,6 +31,6 @@ return {
 	config = function(_, opts)
 		require("oil").setup(opts)
 		-- -- Keymaps
-		vim.keymap.set("n", "<leader>ex", "<cmd>Oil<cr>", { desc = "Open Oil" })
+		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
 	end,
 }
