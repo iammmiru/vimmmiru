@@ -15,7 +15,7 @@ function M.lsp_attach(_, bufnr)
 			desc = 'LSP: ' .. desc
 		end
 
-		vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = desc })
+		vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = desc, silent = true })
 	end
 
 	lsp_keymap('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
