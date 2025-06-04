@@ -193,7 +193,7 @@ return {
 				}
 			},
 			inline = {
-				adapter = "copilot_claude_3_7",
+				adapter = "copilot_claude_4",
 				keymaps = {
 					accept_change = {
 						modes = { n = "ga" },

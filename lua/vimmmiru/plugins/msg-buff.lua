@@ -9,8 +9,12 @@ return {
 				return false
 			end
 		end,
-		config = function()
-			require("msg-buff").setup()
+		opts = {
+			normal_hl = 'NONE',
+			border_hl = 'NONE',
+		},
+		config = function(_, opts)
+			require("msg-buff").setup(opts)
 		end
 	}
 }

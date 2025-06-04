@@ -12,7 +12,6 @@ return {
 		local exclude_dirs = { vim.fn.expand("$HOME/aivis/engine-v2") }
 		require("copilot").setup({
 			should_attach = function (_, bufname)
-				vim.print(bufname)
 				local root_dir = require("lspconfig.util").root_pattern(".git")(vim.fn.expand("%:p"))
 				for _, dir in ipairs(exclude_dirs) do
 					if dir == root_dir then
