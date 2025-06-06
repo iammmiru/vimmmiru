@@ -5,6 +5,7 @@ return {
 			-- LSP Support
 			{ 'mason-org/mason.nvim' },
 			{ 'mason-org/mason-lspconfig.nvim' },
+			require('vimmmiru.plugins.lsp.lsp_signature')
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
