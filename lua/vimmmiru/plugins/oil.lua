@@ -31,6 +31,6 @@ return {
 	config = function(_, opts)
 		require("oil").setup(opts)
 		-- -- Keymaps
-		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
+		vim.keymap.set("n", "<leader>ex", "<cmd>Oil<cr>", { desc = "Open Oil" })
 	end,
 }
