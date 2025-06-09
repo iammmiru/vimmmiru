@@ -49,3 +49,7 @@ Tweak, hack, and make it your own!
 ---
 
 Enjoy your new Neovim experience with built-in AI! 🤖🚀
+
+## License
+
+This configuration is licensed under the MIT License.
