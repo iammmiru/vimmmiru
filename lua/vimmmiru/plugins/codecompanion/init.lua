@@ -1,6 +1,6 @@
 return {
 	"olimorris/codecompanion.nvim",
-	enabled = true,
+	enabled = false,
 	dependencies = {
 		"j-hui/fidget.nvim",
 		"nvim-lua/plenary.nvim",
@@ -52,9 +52,9 @@ return {
 					position = "left", -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
 					border = "single",
 					height = 0.8,
-					width = 0.30,
+					width = 0.3,
 					relative = "editor",
-					full_height = true, -- when set to false, vsplit will be used to open the chat buffer vs. botright/topleft vsplit
+					full_height = false, -- when set to false, vsplit will be used to open the chat buffer vs. botright/topleft vsplit
 					opts = {
 						breakindent = true,
 						cursorcolumn = false,
@@ -75,13 +75,7 @@ return {
 		adapters = {
 			opts = {
 				show_defaults = false,
-				show_model_choices = true,
 			},
-			copilot = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					name = "copilot",
-				})
-			end,
 			copilot_gemini_2_5_pro = function()
 				return require("codecompanion.adapters").extend("copilot", {
 					name = "copilot_gemini_2_5_pro",
@@ -108,16 +102,6 @@ return {
 					schema = {
 						model = {
 							default = "claude-3.7-sonnet",
-						},
-					},
-				})
-			end,
-			copilot_claude_4 = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					name = "copilot_claude_4",
-					schema = {
-						model = {
-							default = "claude-sonnet-4",
 						},
 					},
 				})
@@ -152,32 +136,12 @@ return {
 					},
 				})
 			end,
-			copilot_o4_mini = function()
+			copilot_gpt_o4_mini = function()
 				return require("codecompanion.adapters").extend("copilot", {
-					name = "copilot_o4_mini",
+					name = "copilot_gpt_o4_mini",
 					schema = {
 						model = {
 							default = "o4-mini",
-						},
-					},
-				})
-			end,
-			copilot_gpt_4o = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					name = "copilot_gpt_4o",
-					schema = {
-						model = {
-							default = "gpt-4o",
-						},
-					},
-				})
-			end,
-			copilot_gpt_4o_mini = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					name = "copilot_gpt_4o_mini",
-					schema = {
-						model = {
-							default = "gpt-4o-mini",
 						},
 					},
 				})
@@ -193,7 +157,7 @@ return {
 				}
 			},
 			inline = {
-				adapter = "copilot_claude_4",
+				adapter = "copilot_gpt_4_1",
 				keymaps = {
 					accept_change = {
 						modes = { n = "ga" },
@@ -221,9 +185,9 @@ return {
 					-- Keymap to open history from chat buffer (default: gh)
 					keymap = "gh",
 					-- Automatically generate titles for new chats
-					auto_generate_title = false,
+					auto_generate_title = true,
 					---On exiting and entering neovim, loads the last chat on opening chat
-					continue_last_chat = false,
+					continue_last_chat = true,
 					---When chat is cleared with `gx` delete the chat from history
 					delete_on_clearing_chat = false,
 					-- Picker interface ("telescope", "snacks" or "default")
