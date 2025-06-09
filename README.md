@@ -9,7 +9,7 @@ A playful, minimal, and personal Neovim IDE configuration.
 
 - Fast startup and minimal plugins
 - IDE-like experience with LSP, autocompletion, and snippets
-- **AI integration** for code completion, chat, and suggestions (Copilot, CodeCompanion, etc.)
+- **AI integration** for code completion, chat, and suggestions (Copilot, Aider, etc.)
 - Easy to customize and extend
 - Designed for productivity and fun
 
@@ -38,7 +38,7 @@ git submodule add https://github.com/iammmiru/vimmmiru.git nvim
 ## AI Integration
 
 vimmmiru comes with built-in AI features for enhanced productivity:
-- **Copilot** and **CodeCompanion** for AI-powered code completion, chat, and suggestions.
+- **Copilot** and **Aider** for AI-powered code completion, chat, and suggestions.
 - Seamless integration—just start coding and enjoy smart assistance!
 
 ## Philosophy
