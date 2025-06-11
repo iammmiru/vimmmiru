@@ -1,6 +1,7 @@
 return {
   "GeorgesAlkhouri/nvim-aider",
   cmd = "Aider",
+  enabled = false,
   dependencies = {
     "folke/snacks.nvim",
     {
