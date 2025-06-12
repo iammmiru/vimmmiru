@@ -1,0 +1,338 @@
+{
+  "name": "Neovim Config Workspace",
+  "version": "0.1.0",
+  "system_prompt": "You are an expert in Neovim configuration and Lua plugin development. Use the provided context to answer questions or generate code.",
+  "groups": [
+    {
+      "name": "Core Config",
+      "system_prompt": "Focus on the main Neovim configuration, settings, and keymaps.",
+      "data": ["init_lua", "set_lua", "remap_lua"]
+    },
+    {
+      "name": "Plugin Configs",
+      "system_prompt": "Focus on general plugin configuration files.",
+      "data": [
+        "aider_lua", "auto_completion_lua", "autopairs_lua", "avante_lua", "colors_lua", "copilot_lua", "diagnostic_jumper_lua", "fidget_lua", "flash_lua", "fugitive_lua", "harpoon_lua", "plugins_init_lua", "lazydev_lua", "mini_lua", "msg_buff_lua", "oil_lua", "rust_lua", "snacks_lua", "statusline_lua", "treesitter_context_lua", "treesitter_lua", "trouble_lua", "vimtex_lua", "which_key_lua"
+      ]
+    },
+    {
+      "name": "LSP & Language Support",
+      "system_prompt": "Focus on LSP and language-specific configuration.",
+      "data": [
+        "lsp_init_lua", "jdtls_lua", "lsp_config_lua", "lsp_signature_lua", "lua_ls_lua"
+      ]
+    },
+    {
+      "name": "Telescope & Search",
+      "system_prompt": "Focus on Telescope and related search/navigation plugins.",
+      "data": [
+        "telescope_init_lua", "multigrep_lua"
+      ]
+    },
+    {
+      "name": "CodeCompanion",
+      "system_prompt": "Focus on CodeCompanion plugin configuration and extensions.",
+      "data": [
+        "codecompanion_chat_spinner_lua", "codecompanion_fidget_spinner_lua", "codecompanion_init_lua", "codecompanion_mcphub_config_lua", "codecompanion_vectorcode_lua"
+      ]
+    },
+    {
+      "name": "Filetype Settings",
+      "system_prompt": "Focus on filetype-specific settings.",
+      "data": [
+        "ftplugin_json_lua", "ftplugin_lua_lua", "ftplugin_python_lua", "ftplugin_raml_lua"
+      ]
+    },
+    {
+      "name": "Local Plugins",
+      "system_prompt": "Focus on locally developed plugins.",
+      "data": [
+        "local_plugins"
+      ]
+    },
+    {
+      "name": "My Custom Plugins",
+      "system_prompt": "Focus on custom-developed Neovim plugins and extensions, including custom integrations for this config.",
+      "data": [
+        "diagnostic_jumper_lua",
+        "msg_buff_lua",
+        "aider_lua",
+        "multigrep_lua"
+      ]
+    },
+    {
+      "name": "All Files",
+      "system_prompt": "Provide full context for the entire Neovim configuration and all plugins.",
+      "data": [
+        "init_lua",
+        "set_lua",
+        "remap_lua",
+        "aider_lua",
+        "auto_completion_lua",
+        "autopairs_lua",
+        "avante_lua",
+        "colors_lua",
+        "copilot_lua",
+        "diagnostic_jumper_lua",
+        "fidget_lua",
+        "flash_lua",
+        "fugitive_lua",
+        "harpoon_lua",
+        "plugins_init_lua",
+        "lazydev_lua",
+        "mini_lua",
+        "msg_buff_lua",
+        "oil_lua",
+        "rust_lua",
+        "snacks_lua",
+        "statusline_lua",
+        "treesitter_context_lua",
+        "treesitter_lua",
+        "trouble_lua",
+        "vimtex_lua",
+        "which_key_lua",
+        "lsp_init_lua",
+        "jdtls_lua",
+        "lsp_config_lua",
+        "lsp_signature_lua",
+        "lua_ls_lua",
+        "telescope_init_lua",
+        "multigrep_lua",
+        "codecompanion_chat_spinner_lua",
+        "codecompanion_fidget_spinner_lua",
+        "codecompanion_init_lua",
+        "codecompanion_mcphub_config_lua",
+        "codecompanion_vectorcode_lua",
+        "ftplugin_json_lua",
+        "ftplugin_lua_lua",
+        "ftplugin_python_lua",
+        "ftplugin_raml_lua",
+        "local_plugins"
+      ]
+    }
+  ],
+  "data": {
+    "init_lua": {
+      "type": "file",
+      "path": "init.lua",
+      "description": "Main Neovim entry point."
+    },
+    "set_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/set.lua",
+      "description": "General Neovim settings."
+    },
+    "remap_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/remap.lua",
+      "description": "Keymap definitions."
+    },
+    "aider_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/aider.lua",
+      "description": "Aider plugin configuration."
+    },
+    "auto_completion_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/auto_completion.lua",
+      "description": "Auto-completion plugin configuration."
+    },
+    "autopairs_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/autopairs.lua",
+      "description": "Autopairs plugin configuration."
+    },
+    "avante_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/avante.lua",
+      "description": "Avante plugin configuration."
+    },
+    "colors_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/colors.lua",
+      "description": "Colorscheme plugin configuration."
+    },
+    "copilot_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/copilot.lua",
+      "description": "Copilot plugin configuration."
+    },
+    "diagnostic_jumper_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/diagnostic-jumper.lua",
+      "description": "Diagnostic jumper plugin configuration."
+    },
+    "fidget_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/fidget.lua",
+      "description": "Fidget plugin configuration."
+    },
+    "flash_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/flash.lua",
+      "description": "Flash plugin configuration."
+    },
+    "fugitive_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/fugitive.lua",
+      "description": "Fugitive plugin configuration."
+    },
+    "harpoon_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/harpoon.lua",
+      "description": "Harpoon plugin configuration."
+    },
+    "plugins_init_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/init.lua",
+      "description": "Plugins module entry point."
+    },
+    "lazydev_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/lazydev.lua",
+      "description": "Lazydev plugin configuration."
+    },
+    "mini_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/mini.lua",
+      "description": "Mini plugin configuration."
+    },
+    "msg_buff_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/msg-buff.lua",
+      "description": "Message buffer plugin configuration."
+    },
+    "oil_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/oil.lua",
+      "description": "Oil plugin configuration."
+    },
+    "rust_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/rust.lua",
+      "description": "Rust plugin configuration."
+    },
+    "snacks_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/snacks.lua",
+      "description": "Snacks plugin configuration."
+    },
+    "statusline_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/statusline.lua",
+      "description": "Statusline plugin configuration."
+    },
+    "treesitter_context_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/treesitter-context.lua",
+      "description": "Treesitter context plugin configuration."
+    },
+    "treesitter_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/treesitter.lua",
+      "description": "Treesitter plugin configuration."
+    },
+    "trouble_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/trouble.lua",
+      "description": "Trouble plugin configuration."
+    },
+    "vimtex_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/vimtex.lua",
+      "description": "Vimtex plugin configuration."
+    },
+    "which_key_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/which-key.lua",
+      "description": "Which-key plugin configuration."
+    },
+    "lsp_init_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/lsp/init.lua",
+      "description": "LSP plugins entry point."
+    },
+    "jdtls_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/lsp/jdtls.lua",
+      "description": "JDTLS (Java) LSP configuration."
+    },
+    "lsp_config_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/lsp/lsp_config.lua",
+      "description": "General LSP configuration."
+    },
+    "lsp_signature_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/lsp/lsp_signature.lua",
+      "description": "LSP signature plugin configuration."
+    },
+    "lua_ls_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/lsp/lua_ls.lua",
+      "description": "Lua language server configuration."
+    },
+    "telescope_init_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/telescope/init.lua",
+      "description": "Telescope plugin entry point."
+    },
+    "multigrep_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/telescope/multigrep.lua",
+      "description": "Telescope multigrep extension configuration."
+    },
+    "codecompanion_chat_spinner_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/codecompanion/chat-spinner.lua",
+      "description": "CodeCompanion chat spinner extension."
+    },
+    "codecompanion_fidget_spinner_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/codecompanion/fidget-spinner.lua",
+      "description": "CodeCompanion fidget spinner extension."
+    },
+    "codecompanion_init_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/codecompanion/init.lua",
+      "description": "CodeCompanion plugin entry point."
+    },
+    "codecompanion_mcphub_config_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/codecompanion/mcphub_config.lua",
+      "description": "CodeCompanion MCPHub configuration."
+    },
+    "codecompanion_vectorcode_lua": {
+      "type": "file",
+      "path": "lua/vimmmiru/plugins/codecompanion/vectorcode.lua",
+      "description": "CodeCompanion VectorCode extension."
+    },
+    "ftplugin_json_lua": {
+      "type": "file",
+      "path": "after/ftplugin/json.lua",
+      "description": "Filetype settings for JSON."
+    },
+    "ftplugin_lua_lua": {
+      "type": "file",
+      "path": "after/ftplugin/lua.lua",
+      "description": "Filetype settings for Lua."
+    },
+    "ftplugin_python_lua": {
+      "type": "file",
+      "path": "after/ftplugin/python.lua",
+      "description": "Filetype settings for Python."
+    },
+    "ftplugin_raml_lua": {
+      "type": "file",
+      "path": "after/ftplugin/raml.lua",
+      "description": "Filetype settings for RAML."
+    },
+    "local_plugins": {
+      "type": "file",
+      "path": "/Users/mirulee/my_project/nvim_plugins/",
+      "description": "Locally developed Neovim plugins."
+    }
+  }
+}
+
+

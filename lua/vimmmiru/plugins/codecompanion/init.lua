@@ -73,7 +73,8 @@ return {
     },
     adapters = {
       opts = {
-        show_defaults = true,
+        show_defaults = false,
+        show_model_choices = true,
       },
       copilot_gemini_2_5_pro = function()
         return require("codecompanion.adapters").extend("copilot", {
@@ -165,6 +166,14 @@ return {
           }
         },
         tools = {
+          ["next_edit_suggestion"] = {
+            opts = {
+              --- the default is to open in a new tab, and reuse existing tabs
+              --- where possible
+              ---@type string|fun(path: string):integer?
+              jump_action = 'tabnew',
+            },
+          },
           opts = {
             auto_submit_errors = true,  -- Send any errors to the LLM automatically?
             auto_submit_success = true, -- Send any successful output to the LLM automatically?
@@ -271,6 +280,35 @@ return {
       desc = "Add code to a chat buffer",
       mode = { "v" },
     },
-
   },
+  -- Simple print function for tool usage testing
+  utils = {
+    print_tool_usage = function(tool_name, params)
+      print("Tool Usage: " .. tool_name)
+      if params then
+        print("Parameters: " .. vim.inspect(params))
+      end
+    end
+  },
+  config = function(_, opts)
+    local default_prompt = require("codecompanion.config").opts.system_prompt({})
+    local prompt_appendix = [[
+    When you are suggesting or editing the code, just apply your suggestions or changes to the editor or buffer,
+    instead of asking whether to apply.
+    Always assume that the user wants to review your changes or suggestions in the editer.
+    Always prefer using tools over outright coming up with answers by yourself. For instance, if the user asks you to perform
+    simple arithmetic or conversions (time, unit, etc), use the calculator tool or command line tools instead of calculating it yourself.
+    ]]
+    local system_prompt = default_prompt .. "\n" .. prompt_appendix
+    local config = {
+      opts = {
+        system_prompt = function(_)
+          return system_prompt
+        end
+      }
+    }
+    opts = vim.tbl_deep_extend("force", opts, config)
+    require("codecompanion").setup(opts)
+  end,
 }
+
