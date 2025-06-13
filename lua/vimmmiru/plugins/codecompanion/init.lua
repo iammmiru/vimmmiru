@@ -1,3 +1,5 @@
+local custom_prompts = require("vimmmiru.plugins.codecompanion.prompts")
+
 return {
   "olimorris/codecompanion.nvim",
   enabled = true,
@@ -194,6 +196,28 @@ return {
         },
       },
     },
+    prompt_library = {
+      ["Generate a Commit Message"] = {
+        strategy = "chat",
+        description = "Generate a commit message",
+        opts = {
+          index = 10,
+          is_default = true,
+          is_slash_cmd = true,
+          short_name = "commit",
+          auto_submit = true,
+        },
+        prompts = {
+          {
+            role = "user",
+            content = custom_prompts.commit_prompt,
+            opts = {
+              contains_code = true,
+            },
+          },
+        },
+      },
+    },
     extensions = {
       mcphub = {
         callback = "mcphub.extensions.codecompanion",
@@ -291,15 +315,8 @@ return {
     end
   },
   config = function(_, opts)
-    local default_prompt = require("codecompanion.config").opts.system_prompt({})
-    local prompt_appendix = [[
-    When you are suggesting or editing the code, just apply your suggestions or changes to the editor or buffer,
-    instead of asking whether to apply.
-    Always assume that the user wants to review your changes or suggestions in the editer.
-    Always prefer using tools over outright coming up with answers by yourself. For instance, if the user asks you to perform
-    simple arithmetic or conversions (time, unit, etc), use the calculator tool or command line tools instead of calculating it yourself.
-    ]]
-    local system_prompt = default_prompt .. "\n" .. prompt_appendix
+    local default_sys_prompt = require("codecompanion.config").opts.system_prompt({})
+    local system_prompt = default_sys_prompt .. "\n" .. custom_prompts.sys_prompt_appendix
     local config = {
       opts = {
         system_prompt = function(_)
@@ -311,4 +328,3 @@ return {
     require("codecompanion").setup(opts)
   end,
 }
-
