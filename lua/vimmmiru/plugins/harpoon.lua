@@ -1,20 +1,42 @@
+local function git_branch()
+  local pipe = io.popen("git branch --show-current")
+  if pipe then
+    local c = pipe:read("*l"):match("^%s*(.-)%s*$")
+    pipe:close()
+    return c
+  end
+  return "default list"
+end
+
 return {
-	{
-		'theprimeagen/harpoon',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-		},
-		config = function()
-			local mark = require("harpoon.mark")
-			local ui   = require("harpoon.ui")
+  {
+    'theprimeagen/harpoon',
+    branch = "harpoon2",
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      local harpoon = require("harpoon")
+      harpoon:setup()
 
-			vim.keymap.set("n", "<C-e>a", mark.add_file)
-			vim.keymap.set("n", "<C-e>e", ui.toggle_quick_menu)
+      vim.keymap.set("n", "<C-e>a", function() harpoon:list(git_branch()):add() end)
+      vim.keymap.set("n", "<C-e>e", function() harpoon.ui:toggle_quick_menu(harpoon:list(git_branch())) end)
 
-			vim.keymap.set("n", "<C-e>1", function() ui.nav_file(1) end)
-			vim.keymap.set("n", "<C-e>2", function() ui.nav_file(2) end)
-			vim.keymap.set("n", "<C-e>3", function() ui.nav_file(3) end)
-			vim.keymap.set("n", "<C-e>4", function() ui.nav_file(4) end)
-		end,
-	}
+      vim.keymap.set("n", "<C-e>1", function() harpoon:list(git_branch()):select(1) end)
+      vim.keymap.set("n", "<C-e>2", function() harpoon:list(git_branch()):select(2) end)
+      vim.keymap.set("n", "<C-e>3", function() harpoon:list(git_branch()):select(3) end)
+      vim.keymap.set("n", "<C-e>4", function() harpoon:list(git_branch()):select(4) end)
+
+      vim.api.nvim_create_autocmd({ 'filetype' },
+        {
+          pattern = 'harpoon',
+          callback = function()
+            vim.api.nvim_set_option_value("winhighlight", "NormalFloat:HarpoonWindow,FloatBorder:HarpoonBorder",
+              { win = 0 })
+          end
+        })
+      vim.api.nvim_set_hl(0, 'HarpoonWindow', { bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'HarpoonBorder', { bg = 'NONE' })
+    end,
+  }
 }
