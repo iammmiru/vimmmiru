@@ -34,12 +34,6 @@ return {
           provider = "default", -- default|mini_diff
         },
         chat = {
-          -- Change the default icons
-          icons = {
-            pinned_buffer = " ",
-            watched_buffer = "👀 ",
-          },
-
           -- Alter the sizing of the debug window
           debug_window = {
             ---@return number|fun(): number
@@ -79,90 +73,13 @@ return {
           show_defaults = false,
           show_model_choices = true,
         },
-        copilot_gemini_2_5_pro = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_gemini_2_5_pro",
-            schema = {
-              model = {
-                default = "gemini-2.5-pro",
-              },
-            },
-          })
-        end,
-        copilot_gemini_2_0_flash = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_gemini_2_0_flash",
-            schema = {
-              model = {
-                default = "gemini-2.0-flash-001",
-              },
-            },
-          })
-        end,
-        copilot_claude_3_7 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_claude_3_7",
-            schema = {
-              model = {
-                default = "claude-3.7-sonnet",
-              },
-            },
-          })
-        end,
-        copilot_claude_3_5 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_claude_3_5",
-            schema = {
-              model = {
-                default = "claude-3.5-sonnet",
-              },
-            },
-          })
-        end,
-        copilot_claude_3_7_thought = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_claude_3_7_thought",
-            schema = {
-              model = {
-                default = "claude-3.7-sonnet-thought",
-              },
-            },
-          })
-        end,
-        copilot_claude_4 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_claude_4",
-            schema = {
-              model = {
-                default = "claude-sonnet-4",
-              },
-            },
-          })
-        end,
-        copilot_gpt_4_1 = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_gpt_4_1",
-            schema = {
-              model = {
-                default = "gpt-4.1",
-              },
-            },
-          })
-        end,
-        copilot_gpt_o4_mini = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_gpt_o4_mini",
-            schema = {
-              model = {
-                default = "o4-mini",
-              },
-            },
-          })
-        end,
       },
       strategies = {
         chat = {
-          adapter = "copilot_gpt_4_1",
+          adapter = {
+            name = "copilot",
+            model = "gpt-4.1"
+          },
           keymaps = {
             send = {
               modes = { n = "<CR>", i = "<S-CR>" },
@@ -184,7 +101,10 @@ return {
           },
         },
         inline = {
-          adapter = "copilot_gpt_4_1",
+          adapter = {
+            name = "copilot",
+            model = "gpt-4.1"
+          },
           keymaps = {
             accept_change = {
               modes = { n = "q" },
