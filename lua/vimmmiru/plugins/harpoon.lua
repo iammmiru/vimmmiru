@@ -1,9 +1,14 @@
 local function git_branch()
-  local pipe = io.popen("git branch --show-current")
+  local pipe = io.popen("git branch --show-current 2>/dev/null")
   if pipe then
-    local c = pipe:read("*l"):match("^%s*(.-)%s*$")
-    pipe:close()
-    return c
+    local branch = pipe:read("*l")
+    if branch then
+      local c = branch:match("^%s*(.-)%s*$")
+      pipe:close()
+      return c
+    else
+      return "default list"
+    end
   end
   return "default list"
 end
