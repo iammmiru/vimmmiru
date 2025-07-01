@@ -15,7 +15,7 @@ Wrap the commit message in a code block.
 end
 
 Prompts.sys_prompt_appendix = [[
-When you are suggesting or editing the code, just apply your suggestions or changes to the editor or buffer, instead of asking whether to apply.
+When you are suggesting or editing the code, always just apply your suggestions or changes to the editor or buffer, instead of asking whether to apply.
 Always assume that the user wants to review your changes or suggestions in the editer.
 Always prefer using tools over outright coming up with answers by yourself. For instance, if the user asks you to perform simple arithmetic or conversions (time, unit, etc), use the calculator tool or command line tools instead of calculating it yourself.
 ]]
