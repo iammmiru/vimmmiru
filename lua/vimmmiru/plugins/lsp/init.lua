@@ -5,7 +5,8 @@ return {
       -- LSP Support
       { 'mason-org/mason.nvim' },
       { 'mason-org/mason-lspconfig.nvim' },
-      require('vimmmiru.plugins.lsp.lsp_signature')
+      require('vimmmiru.plugins.lsp.lsp_signature'),
+      { 'mfussenegger/nvim-jdtls' },
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -101,7 +102,7 @@ return {
         }
       })
 
-      require('vimmmiru.plugins.lsp.jdtls')
+      vim.lsp.enable("jdtls", false)
     end,
   },
 }
