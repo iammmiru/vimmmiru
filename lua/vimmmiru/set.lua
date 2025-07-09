@@ -26,7 +26,6 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
@@ -40,17 +39,17 @@ vim.opt.linebreak = true
 
 vim.o.title = true
 -- vim.cmd [[set titlestring=%F\ \ %{strftime('%d.%m.%Y\ %H:%M',getftime(expand('%')))}]]
-vim.cmd [[set titlestring=%t]]
+vim.cmd([[set titlestring=%t]])
 
 -- Update the contents that are modified out side of vim.
 -- The update happens through calling checktime, which is
 -- triggered whenever the terminal gets a focus.
-vim.cmd [[au FocusGained,BufEnter * checktime]]
+vim.cmd([[au FocusGained,BufEnter * checktime]])
 -- turning on relative line numbers in netrw
-vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"
 
 -- turn on spell check
-vim.cmd [[set spell spelllang=en_us]]
+vim.cmd([[set spell spelllang=en_us]])
 
 -- turn off crappy search count
-vim.cmd [[set shortmess+=S]]
+vim.cmd([[set shortmess+=S]])

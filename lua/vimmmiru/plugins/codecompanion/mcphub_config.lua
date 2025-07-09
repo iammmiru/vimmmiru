@@ -13,9 +13,9 @@ return {
       replace_in_file = {
         keymaps = {
           accept = "q",
-          reject = "gj"
+          reject = "gj",
         },
       },
     },
-  }
+  },
 }

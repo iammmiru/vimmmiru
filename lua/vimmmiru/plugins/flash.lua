@@ -1,15 +1,15 @@
 return {
-	"folke/flash.nvim",
-	event = "VeryLazy",
-	enabled = false,
-	-- opts.modes.search.enabled = false
-	opts = {
-		modes = {
-			search = {
-				enabled = false
-			},
-		},
-	},
+  "folke/flash.nvim",
+  event = "VeryLazy",
+  enabled = false,
+  -- opts.modes.search.enabled = false
+  opts = {
+    modes = {
+      search = {
+        enabled = false,
+      },
+    },
+  },
 	-- stylua: ignore
 	keys = {
 		{ "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },

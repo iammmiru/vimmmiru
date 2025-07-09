@@ -13,15 +13,15 @@ return {
     },
   },
   keys = {
-    { "<leader>aa",  "<cmd>Aider toggle<cr>",             desc = "Toggle Aider" },
-    { "<leader>ase", "<cmd>Aider send<cr>",               desc = "Send to Aider",          mode = { "n", "v" } },
-    { "<leader>ac",  "<cmd>Aider command<cr>",            desc = "Aider Commands" },
-    { "<leader>ab",  "<cmd>Aider buffer<cr>",             desc = "Send Buffer" },
-    { "<leader>a+",  "<cmd>Aider add<cr>",                desc = "Add File" },
-    { "<leader>a-",  "<cmd>Aider drop<cr>",               desc = "Drop File" },
-    { "<leader>ar",  "<cmd>Aider add readonly<cr>",       desc = "Add Read-Only" },
-    { "<leader>aR",  "<cmd>Aider reset<cr>",              desc = "Reset Session" },
-    { "<leader>ad",  "<cmd>Aider buffer diagnostics<cr>", desc = "Send buffer diagnostics" },
+    { "<leader>aa", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
+    { "<leader>ase", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+    { "<leader>ac", "<cmd>Aider command<cr>", desc = "Aider Commands" },
+    { "<leader>ab", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
+    { "<leader>a+", "<cmd>Aider add<cr>", desc = "Add File" },
+    { "<leader>a-", "<cmd>Aider drop<cr>", desc = "Drop File" },
+    { "<leader>ar", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
+    { "<leader>aR", "<cmd>Aider reset<cr>", desc = "Reset Session" },
+    { "<leader>ad", "<cmd>Aider buffer diagnostics<cr>", desc = "Send buffer diagnostics" },
   },
   opts = {
     -- Command that executes Aider
@@ -67,15 +67,15 @@ return {
   config = function(_, opts)
     require("nvim_aider").setup(opts)
     require("aider-addons.commit_message").setup({
-      send_to_aider_api = require("nvim_aider").api.send_to_terminal
-    }
-    )
+      send_to_aider_api = require("nvim_aider").api.send_to_terminal,
+    })
     local aider_diff = require("aider-addons.diff")
     aider_diff.setup({
       confirm_revert = false,
     })
 
-    vim.keymap.set("n", "<leader>asd", function() aider_diff.diff_with_previous_undo() end,
-      { desc = "[A]ider [S]how [D]iff" })
-  end
+    vim.keymap.set("n", "<leader>asd", function()
+      aider_diff.diff_with_previous_undo()
+    end, { desc = "[A]ider [S]how [D]iff" })
+  end,
 }

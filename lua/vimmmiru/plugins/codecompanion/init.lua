@@ -19,18 +19,18 @@ return {
         action_palette = {
           width = 95,
           height = 10,
-          prompt = "Prompt ",                   -- Prompt used for interactive LLM calls
-          provider = "default",                 -- Can be "default", "telescope", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
+          prompt = "Prompt ", -- Prompt used for interactive LLM calls
+          provider = "default", -- Can be "default", "telescope", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
           opts = {
-            show_default_actions = true,        -- Show the default actions in the action palette?
+            show_default_actions = true, -- Show the default actions in the action palette?
             show_default_prompt_library = true, -- Show the default prompt library in the action palette?
           },
         },
 
         diff = {
           enabled = true,
-          close_chat_at = 30,   -- Close an open chat buffer if the total columns of your display are less than...
-          layout = "vertical",  -- vertical|horizontal split for default provider
+          close_chat_at = 30, -- Close an open chat buffer if the total columns of your display are less than...
+          layout = "vertical", -- vertical|horizontal split for default provider
           provider = "default", -- default|mini_diff
         },
         chat = {
@@ -45,7 +45,7 @@ return {
           -- Options to customize the UI of the chat buffer
           window = {
             layout = "vertical", -- float|vertical|horizontal|buffer
-            position = "left",   -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
+            position = "left", -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
             border = "single",
             height = 1.0,
             width = 0.3,
@@ -78,12 +78,12 @@ return {
         chat = {
           adapter = {
             name = "copilot",
-            model = "gpt-4.1"
+            model = "gpt-4.1",
           },
           keymaps = {
             send = {
               modes = { n = "<CR>", i = "<S-CR>" },
-            }
+            },
           },
           tools = {
             ["next_edit_suggestion"] = {
@@ -91,11 +91,11 @@ return {
                 --- the default is to open in a new tab, and reuse existing tabs
                 --- where possible
                 ---@type string|fun(path: string):integer?
-                jump_action = 'tabnew',
+                jump_action = "tabnew",
               },
             },
             opts = {
-              auto_submit_errors = true,  -- Send any errors to the LLM automatically?
+              auto_submit_errors = true, -- Send any errors to the LLM automatically?
               auto_submit_success = true, -- Send any successful output to the LLM automatically?
             },
           },
@@ -103,7 +103,7 @@ return {
         inline = {
           adapter = {
             name = "copilot",
-            model = "gpt-4.1"
+            model = "gpt-4.1",
           },
           keymaps = {
             accept_change = {
@@ -144,7 +144,7 @@ return {
           callback = "mcphub.extensions.codecompanion",
           opts = {
             show_result_in_chat = true, -- Show mcp tool results in chat
-            make_vars = true,           -- Convert resources to #variables
+            make_vars = true, -- Convert resources to #variables
             make_slash_commands = true, -- Add prompts as /slash commands
           },
         },
@@ -169,13 +169,13 @@ return {
             auto_save = true,
             -- Keymap to save the current chat manually
             save_chat_keymap = "sc",
-          }
+          },
         },
         vectorcode = {
           opts = {
             add_tool = true,
-          }
-        }
+          },
+        },
       },
     }
     local default_sys_prompt = require("codecompanion.config").opts.system_prompt({})
@@ -184,8 +184,8 @@ return {
       opts = {
         system_prompt = function(_)
           return system_prompt
-        end
-      }
+        end,
+      },
     }
     config = vim.tbl_deep_extend("force", config, additional_config)
     return config
@@ -245,6 +245,6 @@ return {
       if params then
         print("Parameters: " .. vim.inspect(params))
       end
-    end
+    end,
   },
 }

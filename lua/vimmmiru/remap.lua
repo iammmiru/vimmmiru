@@ -16,8 +16,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
 -- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Paste from clipboard
-vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p')
-vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P')
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
 
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
@@ -30,13 +30,12 @@ vim.keymap.set({ "n", "t" }, "<C-\\>", "<cmd> ToggleTerm direction=float<CR>", {
 --     { desc = "Toggle terminal horizontal" })
 -- vim.keymap.set({ "n", "t" }, "<C-\\>v", "<cmd> ToggleTerm direction=vertical<CR>", { desc = "Toggle terminal vertical" })
 
-
 -- Switching between buffers
-vim.keymap.set('n', '<C-l>', '<cmd> bnext <cr>')
-vim.keymap.set('n', '<C-h>', '<cmd> bprevious <cr>')
+vim.keymap.set("n", "<C-l>", "<cmd> bnext <cr>")
+vim.keymap.set("n", "<C-h>", "<cmd> bprevious <cr>")
 
-vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>zz', { silent = true, desc = "Move to next in quickifx list" })
-vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>zz', { silent = true, desc = "Move to prev in quickifx list" })
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<cr>zz", { silent = true, desc = "Move to next in quickifx list" })
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<cr>zz", { silent = true, desc = "Move to prev in quickifx list" })
 
 -- Unmap some annoying behaviors
 vim.keymap.set("n", "L", "<nop>")
@@ -53,10 +52,15 @@ vim.keymap.set({ "n", "v" }, "<C-s>", "<C-a>", { silent = true })
 vim.keymap.set({ "n", "v" }, "g<C-s>", "g<C-a>", { silent = true })
 
 -- copy current directory path to clipboard
-vim.keymap.set("n", "cd", ":let @+ = expand('%')<CR>", { silent = true, desc = "Copy the current directory path to clipboard"})
+vim.keymap.set(
+  "n",
+  "cd",
+  ":let @+ = expand('%')<CR>",
+  { silent = true, desc = "Copy the current directory path to clipboard" }
+)
 
 -- remove keymaps that'll be replaced by LSP keymap
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "gri")
-vim.keymap.del({"n", "x"}, "gra")
+vim.keymap.del({ "n", "x" }, "gra")
