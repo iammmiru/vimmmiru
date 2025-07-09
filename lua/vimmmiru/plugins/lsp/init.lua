@@ -7,6 +7,7 @@ return {
       { 'mason-org/mason-lspconfig.nvim' },
       require('vimmmiru.plugins.lsp.lsp_signature'),
       { 'mfussenegger/nvim-jdtls' },
+	    "stevearc/conform.nvim",
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -91,7 +92,7 @@ return {
         settings = {
           yaml = {
             format = {
-              enable = true
+              enable = false
             },
             schemaStore = {
               enable = true
@@ -103,6 +104,8 @@ return {
       })
 
       vim.lsp.enable("jdtls", false)
+
+      require('vimmmiru.plugins.lsp.formatter').setup()
     end,
   },
 }
