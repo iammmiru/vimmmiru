@@ -15,20 +15,20 @@ return {
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		keys = {
 			{ "<c-space>", desc = "Increment Selection" },
-			{ "<bs>",      desc = "Decrement Selection", mode = "x" },
+			{ "<bs>", desc = "Decrement Selection", mode = "x" },
 		},
 		---@diagnostic disable-next-line: missing-fields
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
-			ensure_installed = { 'c', 'cpp', 'lua', 'python', 'rust', 'java', 'vimdoc', 'yaml' },
+			ensure_installed = { "c", "cpp", "lua", "python", "rust", "java", "vimdoc", "yaml" },
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = '<C-space>',
-					node_incremental = '<C-space>',
-					scope_incremental = '<C-s>',
-					node_decremental = '<C-bs>',
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = "<C-s>",
+					node_decremental = "<C-bs>",
 				},
 			},
 			textobjects = {
@@ -36,26 +36,26 @@ return {
 					enable = true,
 					set_jumps = true, -- whether to set jumps in the jumplist
 					goto_next_start = {
-						[']m'] = '@function.outer',
-						[']]'] = '@class.outer',
+						["]m"] = "@function.outer",
+						["]]"] = "@class.outer",
 					},
 					goto_next_end = {
-						[']M'] = '@function.outer',
-						[']['] = '@class.outer',
+						["]M"] = "@function.outer",
+						["]["] = "@class.outer",
 					},
 					goto_previous_start = {
-						['[m'] = '@function.outer',
-						['[['] = '@class.outer',
+						["[m"] = "@function.outer",
+						["[["] = "@class.outer",
 					},
 					goto_previous_end = {
-						['[M'] = '@function.outer',
-						['[]'] = '@class.outer',
+						["[M"] = "@function.outer",
+						["[]"] = "@class.outer",
 					},
 				},
-			}
+			},
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
-	}
+	},
 }

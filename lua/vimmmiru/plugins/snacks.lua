@@ -30,16 +30,14 @@ return {
 				relative = "cursor",
 				row = -3,
 				col = 0,
-			}
-		}
+			},
+		},
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
 
-		vim.api.nvim_create_user_command(
-			"NotiHistory",
-			function() require("snacks").notifier.show_history() end,
-			{ desc = "Show Snacks Notifier History" }
-		)
+		vim.api.nvim_create_user_command("NotiHistory", function()
+			require("snacks").notifier.show_history()
+		end, { desc = "Show Snacks Notifier History" })
 	end,
 }

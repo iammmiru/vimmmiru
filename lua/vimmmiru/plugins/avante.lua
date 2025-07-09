@@ -19,7 +19,7 @@ return {
 		-- add any opts here
 		-- for example
 		provider = "gemini-2.5-pro",
-		cursor_applying_provider = 'gemini-2.0-flash',
+		cursor_applying_provider = "gemini-2.0-flash",
 		mode = "agentic",
 		auto_suggestion_providor = "gemini-2.5-pro",
 		-- gemini = {
@@ -96,10 +96,10 @@ return {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		--- The below dependencies are optional,
-		"echasnovski/mini.pick",   -- for file_selector provider mini.pick
+		"echasnovski/mini.pick", -- for file_selector provider mini.pick
 		"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-		"hrsh7th/nvim-cmp",        -- autocompletion for avante commands and mentions
-		"ibhagwan/fzf-lua",        -- for file_selector provider fzf
+		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+		"ibhagwan/fzf-lua", -- for file_selector provider fzf
 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 		"zbirenbaum/copilot.lua",
 		{
@@ -113,15 +113,13 @@ return {
 			-- uncomment this if you don't want mcp-hub to be available globally or can't use -g
 			-- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
 			config = function()
-				require("mcphub").setup(
-					{
-						extensions = {
-							avante = {
-								make_slash_commands = true, -- make /slash commands from MCP server prompts
-							}
-						}
-					}
-				)
+				require("mcphub").setup({
+					extensions = {
+						avante = {
+							make_slash_commands = true, -- make /slash commands from MCP server prompts
+						},
+					},
+				})
 			end,
 		},
 		-- for providers='copilot'
@@ -144,7 +142,7 @@ return {
 		-- },
 		{
 			-- Make sure to set this up properly if you have lazy=true
-			'MeanderingProgrammer/render-markdown.nvim',
+			"MeanderingProgrammer/render-markdown.nvim",
 			opts = {
 				file_types = { "markdown", "Avante" },
 			},

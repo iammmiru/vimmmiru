@@ -32,14 +32,14 @@ return {
 						["String"] = { fg = palette.green.bright },
 						["Constant"] = { fg = teal.dim },
 						["Visual"] = { bg = palette.black.bright },
-					}
+					},
 				},
 				palettes = {
 					nordfox = {
 						comment = "#728f97",
 						white = palette.white.dim,
 					},
-				}
+				},
 			})
 
 			vim.cmd("colorscheme nordfox")

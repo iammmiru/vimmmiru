@@ -1,16 +1,16 @@
 return {
 	-- Indent break line
 	{
-		'lukas-reineke/indent-blankline.nvim',
+		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			require('ibl').setup {
-				indent = { char = "┊" }
-			}
-		end
+			require("ibl").setup({
+				indent = { char = "┊" },
+			})
+		end,
 	},
 
 	{
-		'mbbill/undotree',
+		"mbbill/undotree",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -20,19 +20,19 @@ return {
 	-- Terminal functionalities
 	{
 		"akinsho/toggleterm.nvim",
-		version = '*',
+		version = "*",
 		config = function()
 			require("toggleterm").setup()
-		end
+		end,
 	},
 
 	{
-		'numToStr/Comment.nvim',
+		"numToStr/Comment.nvim",
 		config = function()
-			require('Comment').setup()
-		end
+			require("Comment").setup()
+		end,
 	},
 
 	-- CSV plugin
-	'chrisbra/csv.vim',
+	"chrisbra/csv.vim",
 }

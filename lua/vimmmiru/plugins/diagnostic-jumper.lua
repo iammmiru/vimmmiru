@@ -12,9 +12,12 @@ return {
 		config = function()
 			local diagpang = require("diagnostic-jumper")
 
-			vim.keymap.set("n", "]p", function() diagpang.jump({ count = 1 }) end, { desc = "DiagnosticJumper: Next Diagnostic" })
-			vim.keymap.set("n", "[p", function() diagpang.jump({ count = -1 }) end,
-				{ desc = "DiagnosticJumper: Prev Diagnostic" })
-		end
-	}
+			vim.keymap.set("n", "]p", function()
+				diagpang.jump({ count = 1 })
+			end, { desc = "DiagnosticJumper: Next Diagnostic" })
+			vim.keymap.set("n", "[p", function()
+				diagpang.jump({ count = -1 })
+			end, { desc = "DiagnosticJumper: Prev Diagnostic" })
+		end,
+	},
 }

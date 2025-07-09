@@ -25,23 +25,25 @@ local function command_generator(prompt)
 end
 
 local create_finder = function(opts)
-	return finders.new_async_job {
+	return finders.new_async_job({
 		command_generator = command_generator,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
 		cwd = opts.search_cwd,
-	}
+	})
 end
 
 M.live_multigrep = function(opts)
 	opts = opts or {}
 	opts.cwd = opts.cwd or vim.uv.cwd()
-	pickers.new(opts, {
-		debounce = 100,
-		prompt_title = "MultiGrep",
-		finder = create_finder(opts),
-		previewer = conf.grep_previewer(opts),
-		sorter = require("telescope.sorters").empty(),
-	}):find()
+	pickers
+		.new(opts, {
+			debounce = 100,
+			prompt_title = "MultiGrep",
+			finder = create_finder(opts),
+			previewer = conf.grep_previewer(opts),
+			sorter = require("telescope.sorters").empty(),
+		})
+		:find()
 end
 
 return M

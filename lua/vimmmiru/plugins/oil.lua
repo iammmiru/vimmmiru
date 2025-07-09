@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-doc-name
 return {
-	'stevearc/oil.nvim',
+	"stevearc/oil.nvim",
 	---@module 'oil'
 	---@type oil.SetupOpts
 	opts = {
@@ -16,12 +16,12 @@ return {
 				-- hide .DS_Store
 				local m = name:match("^%.DS_Store$")
 				return m ~= nil
-			end
+			end,
 		},
 		keymaps = {
 			["`"] = false,
-			["cd"] = { "actions.cd", mode = "n" }
-		}
+			["cd"] = { "actions.cd", mode = "n" },
+		},
 	},
 	-- Optional dependencies
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },

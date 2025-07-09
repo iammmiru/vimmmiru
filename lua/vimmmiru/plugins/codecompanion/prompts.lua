@@ -1,8 +1,9 @@
 Prompts = {}
 
 Prompts.commit_prompt = function()
-  local staged_diff = vim.fn.system("git diff --no-ext-diff --staged")
-  local prompt = string.format([[
+	local staged_diff = vim.fn.system("git diff --no-ext-diff --staged")
+	local prompt = string.format(
+		[[
 You are an expert at following the Conventional Commit specification.
 Generates concise, explanatory Git commit messages based on the provided diffs.
 You don't have to write out all miscellaneous changes, e.g., the contents of lock files update or dependency updates, but focus on the main changes made in the staged files.
@@ -10,8 +11,10 @@ Wrap the commit message in a code block.
 ```diff
 %s
 ```
-]], staged_diff)
-  return prompt
+]],
+		staged_diff
+	)
+	return prompt
 end
 
 Prompts.sys_prompt_appendix = [[

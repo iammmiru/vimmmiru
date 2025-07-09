@@ -10,11 +10,11 @@ return {
 			end
 		end,
 		opts = {
-			normal_hl = 'NONE',
-			border_hl = 'NONE',
+			normal_hl = "NONE",
+			border_hl = "NONE",
 		},
 		config = function(_, opts)
 			require("msg-buff").setup(opts)
-		end
-	}
+		end,
+	},
 }
