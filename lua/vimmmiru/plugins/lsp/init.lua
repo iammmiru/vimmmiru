@@ -8,6 +8,13 @@ return {
       require("vimmmiru.plugins.lsp.lsp_signature"),
       { "mfussenegger/nvim-jdtls" },
       "stevearc/conform.nvim",
+      "nvim-telescope/telescope.nvim",
+      { "mrcjkb/rustaceanvim", version = "^6" },
+      {
+        "saecki/crates.nvim",
+        tag = "stable",
+        event = { "BufRead Cargo.toml" },
+      },
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -18,12 +25,15 @@ return {
         vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local lsp_attach = require("vimmmiru.plugins.lsp.lsp_config").lsp_attach
+      local rust = require("vimmmiru.plugins.lsp.rust")
 
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id).name
-          if client ~= "rust-analyzer" and client ~= "copilot" then
+          if client == "rust-analyzer" then
+            rust.lsp_attach(_, event.buf)
+          elseif client ~= "copilot" and client ~= "vectorcode_server" then
             lsp_attach(_, event.buf)
           end
         end,
@@ -101,6 +111,7 @@ return {
 
       vim.lsp.enable("jdtls", false)
 
+      require("vimmmiru.plugins.lsp.rust").setup()
       require("vimmmiru.plugins.lsp.formatter").setup()
     end,
   },
