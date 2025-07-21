@@ -39,7 +39,7 @@ return {
           { name = "path", group_index = 3 },
           { name = "luasnip", group_index = 3 },
           { name = "crates", group_index = 3 },
-          { name = "copilot", group_index = 2 },
+          { name = "copilot", group_index = 4 },
         },
 
         snippet = {
