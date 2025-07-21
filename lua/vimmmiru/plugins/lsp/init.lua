@@ -98,13 +98,14 @@ return {
         settings = {
           yaml = {
             format = {
-              enable = false,
+              enable = true,
             },
             schemaStore = {
               enable = true,
             },
             hover = true,
             validate = true,
+            completion = true,
           },
         },
       })

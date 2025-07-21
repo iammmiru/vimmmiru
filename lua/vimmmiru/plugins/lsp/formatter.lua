@@ -4,9 +4,9 @@ local opts = {
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "ruff_format" },
-    rust = { "rustfmt", lsp_format = "fallback" },
+    rust = { "rustfmt" },
     java = { "google-java-format" },
-    yaml = { "yq" },
+    yaml = { lsp_format = "prefer" },
     json = { "yq" },
   },
 }
