@@ -21,6 +21,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
+    cmd = "ToggleTerm",
     config = function()
       require("toggleterm").setup()
     end,
@@ -34,5 +35,5 @@ return {
   },
 
   -- CSV plugin
-  "chrisbra/csv.vim",
+  { "chrisbra/csv.vim", ft = { "csv" } },
 }

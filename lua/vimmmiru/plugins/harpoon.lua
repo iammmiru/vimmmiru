@@ -16,6 +16,7 @@ end
 return {
   {
     "theprimeagen/harpoon",
+    keys = { "<C-e>a", "<C-e>e", "<C-e>1", "<C-e>2", "<C-e>3", "<C-e>4" },
     branch = "harpoon2",
     dependencies = {
       "nvim-lua/plenary.nvim",
