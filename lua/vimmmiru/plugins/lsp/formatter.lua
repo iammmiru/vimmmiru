@@ -7,11 +7,11 @@ local opts = {
     rust = { "rustfmt" },
     java = { "google-java-format" },
     yaml = { lsp_format = "prefer" },
-    json = { "yq" },
+    json = { lsp_format = "prefer" },
   },
 }
 
-local formatters = { "yq", "google-java-format", "stylua" }
+local formatters = { "google-java-format", "stylua" }
 
 local mason_registgry = require("mason-registry")
 

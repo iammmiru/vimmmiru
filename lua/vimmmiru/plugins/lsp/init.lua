@@ -48,6 +48,7 @@ return {
           "bashls",
           "yamlls",
           "ruff",
+          "jsonls",
         },
         automatic_enable = true,
       })
@@ -106,6 +107,18 @@ return {
             hover = true,
             validate = true,
             completion = true,
+          },
+        },
+      })
+
+      local json_capabilities = vim.lsp.protocol.make_client_capabilities()
+      json_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      vim.lsp.config("jsonls", {
+        capabilities = json_capabilities,
+        settings = {
+          json = {
+            validate = { enable = true },
           },
         },
       })
