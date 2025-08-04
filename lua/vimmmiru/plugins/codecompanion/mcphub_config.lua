@@ -10,10 +10,12 @@ return {
   -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
   opts = {
     builtin_tools = {
-      replace_in_file = {
-        keymaps = {
-          accept = "q",
-          reject = "gj",
+      edit_file = {
+        ui = {
+          keybindings = {
+            accept_all = "q",
+            reject_all = "gj",
+          },
         },
       },
     },
