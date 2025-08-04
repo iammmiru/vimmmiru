@@ -8,6 +8,7 @@ vim.g.rustaceanvim = {
 		},
 	},
 	server = {
+		cmd = { "/opt/homebrew/bin/rust-analyzer" },
 		capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		standalone = false,
 		cmd_env = {
@@ -15,10 +16,6 @@ vim.g.rustaceanvim = {
 		},
 		default_settings = {
 			["rust-analyzer"] = {
-				cargo = {
-					features = "",
-					noDefaultFeatures = false,
-				},
 				checkOnSave = true,
 				files = {
 					watcher = "client",

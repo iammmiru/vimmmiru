@@ -5,7 +5,7 @@ return {
       -- LSP Support
       { "mason-org/mason.nvim" },
       { "mason-org/mason-lspconfig.nvim" },
-      require("vimmmiru.plugins.lsp.lsp_signature"),
+      "ray-x/lsp_signature.nvim",
       { "mfussenegger/nvim-jdtls" },
       "stevearc/conform.nvim",
       "nvim-telescope/telescope.nvim",
@@ -127,6 +127,7 @@ return {
 
       require("vimmmiru.plugins.lsp.rust").setup()
       require("vimmmiru.plugins.lsp.formatter").setup()
+      require("vimmmiru.plugins.lsp.lsp_signature").setup()
     end,
   },
 }
