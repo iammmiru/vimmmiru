@@ -2,7 +2,7 @@ local custom_prompts = require("vimmmiru.plugins.codecompanion.prompts")
 
 return {
   "olimorris/codecompanion.nvim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     "j-hui/fidget.nvim",
     "nvim-lua/plenary.nvim",
