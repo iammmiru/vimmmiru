@@ -20,7 +20,6 @@ return {
     },
     keymaps = {
       ["`"] = false,
-      ["cd"] = { "actions.cd", mode = "n" },
     },
   },
   -- Optional dependencies
@@ -32,5 +31,11 @@ return {
     require("oil").setup(opts)
     -- -- Keymaps
     vim.keymap.set("n", "<leader>ex", "<cmd>Oil<cr>", { desc = "Open Oil" })
+    vim.keymap.set(
+      "n",
+      "cd",
+      ":let @+ = expand('%')<CR>",
+      { silent = true, desc = "Copy the current directory path to clipboard" }
+    )
   end,
 }
