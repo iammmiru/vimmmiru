@@ -1,6 +1,6 @@
 return {
   "NickvanDyke/opencode.nvim",
-  dependencies = { "folke/snacks.nvim", "cbochs/grapple.nvim" },
+  dependencies = { "folke/snacks.nvim" },
   ---@type opencode.Opts
   opts = {
     terminal = {
