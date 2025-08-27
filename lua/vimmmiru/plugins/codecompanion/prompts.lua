@@ -23,4 +23,8 @@ Always assume that the user wants to review your changes or suggestions in the e
 Always prefer using tools over outright coming up with answers by yourself. For instance, if the user asks you to perform simple arithmetic or conversions (time, unit, etc), use the calculator tool or command line tools instead of calculating it yourself.
 ]]
 
+local plugin_path = vim.api.nvim_get_runtime_file("lua/vimmmiru/plugins/codecompanion/beast_mode_3_1.md", false)[1]
+local lines = vim.fn.readfile(plugin_path)
+Prompts.beast_mode_prompt = table.concat(lines, "\n")
+
 return Prompts

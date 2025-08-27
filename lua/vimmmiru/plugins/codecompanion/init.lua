@@ -2,7 +2,7 @@ local custom_prompts = require("vimmmiru.plugins.codecompanion.prompts")
 
 return {
   "olimorris/codecompanion.nvim",
-  enabled = false,
+  enabled = true,
   dependencies = {
     "j-hui/fidget.nvim",
     "nvim-lua/plenary.nvim",
@@ -20,18 +20,16 @@ return {
           width = 95,
           height = 10,
           prompt = "Prompt ", -- Prompt used for interactive LLM calls
-          provider = "default", -- Can be "default", "telescope", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
           opts = {
             show_default_actions = true, -- Show the default actions in the action palette?
             show_default_prompt_library = true, -- Show the default prompt library in the action palette?
           },
         },
-
         diff = {
           enabled = true,
           close_chat_at = 30, -- Close an open chat buffer if the total columns of your display are less than...
           layout = "vertical", -- vertical|horizontal split for default provider
-          provider = "default", -- default|mini_diff
+          provider = "inline",
         },
         chat = {
           -- Alter the sizing of the debug window
@@ -41,6 +39,7 @@ return {
             ---@return number|fun(): number
             height = vim.o.lines - 2,
           },
+          fold_context = true,
 
           -- Options to customize the UI of the chat buffer
           window = {
@@ -69,6 +68,8 @@ return {
         },
       },
       adapters = {
+        jina = "jina",
+        copilot = "copilot",
         opts = {
           show_defaults = false,
           show_model_choices = true,
@@ -78,11 +79,15 @@ return {
         chat = {
           adapter = {
             name = "copilot",
-            model = "gpt-4.1",
+            model = "gpt-5",
           },
           keymaps = {
             send = {
               modes = { n = "<CR>", i = "<S-CR>" },
+            },
+            super_diff = {
+              modes = { n = "gsd" },
+              description = "Show Super Diff",
             },
           },
           tools = {
@@ -97,13 +102,23 @@ return {
             opts = {
               auto_submit_errors = true, -- Send any errors to the LLM automatically?
               auto_submit_success = true, -- Send any successful output to the LLM automatically?
+              default_tools = {
+                "sequentialthinking",
+                "fetch_webpage",
+                "memory_mcp",
+                "github",
+                "git",
+                "context7",
+                "file_search",
+                "grep_search",
+              },
             },
           },
         },
         inline = {
           adapter = {
             name = "copilot",
-            model = "gpt-4.1",
+            model = "gpt-5",
           },
           keymaps = {
             accept_change = {
@@ -113,6 +128,10 @@ return {
             reject_change = {
               modes = { n = "gj" },
               description = "Reject the suggested change",
+            },
+            always_accept = {
+              modes = { n = "gA" },
+              description = "Always accept the suggested change",
             },
           },
         },
@@ -127,6 +146,10 @@ return {
             is_slash_cmd = true,
             short_name = "commit",
             auto_submit = true,
+            adapter = {
+              name = "copilot",
+              model = "gpt-5-mini",
+            },
           },
           prompts = {
             {
@@ -156,7 +179,7 @@ return {
             -- Automatically generate titles for new chats
             auto_generate_title = true,
             ---On exiting and entering neovim, loads the last chat on opening chat
-            continue_last_chat = true,
+            continue_last_chat = false,
             ---When chat is cleared with `gx` delete the chat from history
             delete_on_clearing_chat = false,
             -- Picker interface ("telescope", "snacks" or "default")
@@ -178,8 +201,7 @@ return {
         },
       },
     }
-    local default_sys_prompt = require("codecompanion.config").opts.system_prompt({})
-    local system_prompt = default_sys_prompt .. "\n" .. custom_prompts.sys_prompt_appendix
+    local system_prompt = custom_prompts.beast_mode_prompt
     local additional_config = {
       opts = {
         system_prompt = function(_)
@@ -204,7 +226,6 @@ return {
     else
       vim.notify("Failed to load vimmmiru.plugins.codecompanion.spinner", vim.log.levels.WARN)
     end
-
     vim.api.nvim_create_autocmd("User", {
       pattern = "CodeCompanionChatSubmitted",
       callback = function()

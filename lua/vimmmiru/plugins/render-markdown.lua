@@ -4,6 +4,10 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {
+    file_types = {
+      "markdown",
+      "codecompanion",
+    },
     sign = { enabled = false },
     heading = {
       backgrounds = {
