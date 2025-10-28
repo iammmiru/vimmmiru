@@ -2,15 +2,15 @@ local custom_prompts = require("vimmmiru.plugins.codecompanion.prompts")
 
 return {
   "olimorris/codecompanion.nvim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     "j-hui/fidget.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "zbirenbaum/copilot.lua",
     require("vimmmiru.plugins.codecompanion.mcphub_config"),
-    require("vimmmiru.plugins.codecompanion.vectorcode"),
     "ravitemer/codecompanion-history.nvim",
+    require("vimmmiru.plugins.codecompanion.vectorcode"),
   },
   opts = function()
     local config = {
@@ -29,7 +29,7 @@ return {
           enabled = true,
           close_chat_at = 30, -- Close an open chat buffer if the total columns of your display are less than...
           layout = "vertical", -- vertical|horizontal split for default provider
-          provider = "inline",
+          provider = "mini_diff",
         },
         chat = {
           -- Alter the sizing of the debug window
@@ -40,6 +40,8 @@ return {
             height = vim.o.lines - 2,
           },
           fold_context = true,
+          fold_reasoning = false, -- Fold the reasoning content from the LLM in the chat buffer?
+          show_settings = true, -- Show LLM settings at the top of the chat buffer?
 
           -- Options to customize the UI of the chat buffer
           window = {
@@ -68,11 +70,13 @@ return {
         },
       },
       adapters = {
-        jina = "jina",
-        copilot = "copilot",
-        opts = {
-          show_defaults = false,
-          show_model_choices = true,
+        http = {
+          jina = "jina",
+          copilot = "copilot",
+          opts = {
+            show_defaults = false,
+            show_model_choices = true,
+          },
         },
       },
       strategies = {
@@ -163,14 +167,6 @@ return {
         },
       },
       extensions = {
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            show_result_in_chat = true, -- Show mcp tool results in chat
-            make_vars = true, -- Convert resources to #variables
-            make_slash_commands = true, -- Add prompts as /slash commands
-          },
-        },
         history = {
           enabled = true,
           opts = {
@@ -233,7 +229,20 @@ return {
       end,
       desc = "Exit insert mode after submitting to CodeCompanionChat",
     })
-    -- require('mini.diff').setup()
+
+    require("mcphub.extensions.codecompanion").setup({
+      enabled = true,
+      make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
+      show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
+      add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
+      show_result_in_chat = true, -- Show tool results directly in chat buffer
+      ---@diagnostic disable-next-line: assign-type-mismatch
+      format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
+      -- MCP Resources
+      make_vars = true, -- Convert MCP resources to #variables for prompts
+      -- MCP Prompts
+      make_slash_commands = true, -- Add MCP prompts as /slash commands
+    })
   end,
   keys = {
     {

@@ -2,11 +2,8 @@ return {
   "Davidyz/VectorCode",
   version = "*", -- optional, depending on whether you're on nightly or release
   build = "uv tool upgrade vectorcode", -- optional but recommended. This keeps your CLI up-to-date.
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   opts = {
     async_backend = "lsp",
-    on_setup = {
-      lsp = true,
-    },
   },
 }
