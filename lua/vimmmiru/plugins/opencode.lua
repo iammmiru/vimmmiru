@@ -2,28 +2,43 @@ return {
   "NickvanDyke/opencode.nvim",
   dependencies = { "folke/snacks.nvim" },
   enabled = true,
-  ---@type opencode.Opts
-  opts = {
-    terminal = {
-      win = {
-        wo = {
-          winhighlight = "Normal:Normal,NormalNC:NormalNC,WinBar:WinBar,WinBarNC:WinBarNC",
+  config = function()
+    ---@type opencode.Opts
+    vim.g.opencode_opts = {
+      provider = {
+        enabled = "snacks", -- Default when `snacks.terminal` is enabled.
+        snacks = {
+          win = {
+            wo = {
+              winhighlight = "Normal:Normal,NormalNC:NormalNC,WinBar:WinBar,WinBarNC:WinBarNC",
+            },
+            position = "left",
+            width = 0.35,
+            enter = false,
+          },
         },
-        position = "left",
-        width = 0.35,
-        enter = false,
       },
-    },
-  },
-  -- stylua: ignore
-  keys = {
-    { '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle embedded opencode', },
-    { '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n', },
-    { '<leader>oa', function() require('opencode').ask('@selection: ') end, desc = 'Ask opencode about selection', mode = 'v', },
-    { '<leader>op', function() require('opencode').select_prompt() end, desc = 'Select prompt', mode = { 'n', 'v', }, },
-    { '<leader>on', function() require('opencode').command('session_new') end, desc = 'New session', },
-    { '<leader>oy', function() require('opencode').command('messages_copy') end, desc = 'Copy last message', },
-    { '<A-C-u>',    function() require('opencode').command('messages_half_page_up') end, desc = 'Scroll messages up', },
-    { '<A-C-d>',    function() require('opencode').command('messages_half_page_down') end, desc = 'Scroll messages down', },
-  },
+      -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
+    }
+
+    -- Required for `opts.auto_reload`.
+    vim.o.autoread = true
+
+    -- Recommended/example keymaps.
+    vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+      require("opencode").ask("@this: ", { submit = true })
+    end, { desc = "Ask opencode" })
+    vim.keymap.set({ "n", "x" }, "<leader>op", function()
+      require("opencode").select()
+    end, { desc = "Execute opencode action…" })
+    vim.keymap.set({ "n", "t" }, "<leader>ot", function()
+      require("opencode").toggle()
+    end, { desc = "Toggle opencode" })
+    vim.keymap.set("n", "<A-C-u>", function()
+      require("opencode").command("session.half.page.up")
+    end, { desc = "opencode half page up" })
+    vim.keymap.set("n", "<A-C-d>", function()
+      require("opencode").command("session.half.page.down")
+    end, { desc = "opencode half page down" })
+  end,
 }

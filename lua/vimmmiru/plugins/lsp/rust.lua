@@ -8,12 +8,12 @@ vim.g.rustaceanvim = {
 		},
 	},
 	server = {
-		cmd = { "/opt/homebrew/bin/rust-analyzer" },
+		cmd = { "/Users/mirulee/.cargo/bin/rust-analyzer" },
 		capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		standalone = false,
-		cmd_env = {
-			RA_LOG = "proc-macro=debug",
-		},
+		-- cmd_env = {
+		-- 	RA_LOG = "proc-macro=debug",
+		-- },
 		default_settings = {
 			["rust-analyzer"] = {
 				checkOnSave = true,
@@ -24,7 +24,6 @@ vim.g.rustaceanvim = {
 				procMacro = {
 					enabled = true,
 				},
-				memoryUsageLimitMb = 2048,
 			},
 		},
 	},
