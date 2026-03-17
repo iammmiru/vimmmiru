@@ -3,7 +3,8 @@ local conform = require("conform")
 local opts = {
   formatters_by_ft = {
     lua = { "stylua" },
-    python = { "ruff_format" },
+    javascript = { lsp_format = "prefer" },
+    python = { "black", lsp_format = "fallback" },
     rust = { "rustfmt" },
     java = { "google-java-format" },
     yaml = { lsp_format = "prefer" },
