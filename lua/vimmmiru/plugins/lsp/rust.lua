@@ -18,7 +18,7 @@ vim.g.rustaceanvim = {
       ["rust-analyzer"] = {
         checkOnSave = true,
         files = {
-          watcher = "client",
+          watcher = "server",
           -- excludeDirs = { "/Users/mirulee/.cargo/", "/Users/mirulee/.rustup/" },
         },
         procMacro = {
