@@ -18,11 +18,11 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local lspconfig = require("lspconfig")
-      local lsp_defaults = lspconfig.util.default_config
+      local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+      vim.lsp.config("*", {
+        capabilities = cmp_capabilities,
+      })
 
       local lsp_attach = require("vimmmiru.plugins.lsp.lsp_config").lsp_attach
       local rust = require("vimmmiru.plugins.lsp.rust")
