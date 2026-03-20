@@ -44,7 +44,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "jdtls",
-          "pyright",
+          "ty",
           "bashls",
           "yamlls",
           "ruff",
@@ -73,20 +73,6 @@ return {
         end,
       })
 
-      vim.lsp.config("pyright", {
-        settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
-          python = {
-            analysis = {
-              -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { "*" },
-            },
-          },
-        },
-      })
       vim.lsp.config("yamlls", {
         capabilities = {
           textDocument = {
