@@ -29,6 +29,8 @@ vim.g.rustaceanvim = {
   },
 }
 
+vim.lsp.config("rust-analyzer", {})
+
 Rust.lsp_attach = function(_, bufnr)
   local lsp_attach = require("vimmmiru.plugins.lsp.lsp_config")
 

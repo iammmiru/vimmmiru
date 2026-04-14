@@ -6,7 +6,6 @@ return {
   opts = {
     file_types = {
       "markdown",
-      "codecompanion",
     },
     sign = { enabled = false },
     heading = {
