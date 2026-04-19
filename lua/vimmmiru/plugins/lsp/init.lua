@@ -45,6 +45,7 @@ return {
           "lua_ls",
           "jdtls",
           "ty",
+          "pyright",
           "bashls",
           "yamlls",
           "ruff",
@@ -70,6 +71,27 @@ return {
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
           end
+        end,
+      })
+
+      vim.lsp.config("pyright", {
+        on_attach = function(client)
+          -- Keep ty as the main Python LSP and use Pyright as a quiet fallback
+          -- for rename when ty returns `Nothing to rename`.
+          client.handlers["textDocument/publishDiagnostics"] = function() end
+          client.server_capabilities.hoverProvider = false
+          client.server_capabilities.definitionProvider = false
+          client.server_capabilities.declarationProvider = false
+          client.server_capabilities.typeDefinitionProvider = false
+          client.server_capabilities.implementationProvider = false
+          client.server_capabilities.referencesProvider = false
+          client.server_capabilities.documentSymbolProvider = false
+          client.server_capabilities.workspaceSymbolProvider = false
+          client.server_capabilities.completionProvider = nil
+          client.server_capabilities.signatureHelpProvider = nil
+          client.server_capabilities.codeActionProvider = false
+          client.server_capabilities.semanticTokensProvider = nil
+          client.server_capabilities.inlayHintProvider = false
         end,
       })
 
