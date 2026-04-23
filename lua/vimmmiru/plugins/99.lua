@@ -3,14 +3,66 @@ return {
   config = function()
     local _99 = require("99")
 
+    local OPENCODE_DEFAULT_MODEL = "github-copilot/gpt-5.4"
+    local PI_DEFAULT_MODEL = "openai-codex/gpt-5.5"
+
+    function _99.Providers.OpenCodeProvider._get_default_model()
+      return OPENCODE_DEFAULT_MODEL
+    end
+
+    local PiProvider = setmetatable({}, { __index = _99.Providers.BaseProvider })
+
+    function PiProvider._build_command(_, query, context)
+      return {
+        "pi",
+        "-p",
+        "--no-session",
+        "--model",
+        context.model,
+        query,
+      }
+    end
+
+    function PiProvider.fetch_models(callback)
+      vim.system({ "pi", "--list-models" }, { text = true }, function(obj)
+        vim.schedule(function()
+          if obj.code ~= 0 then
+            callback(nil, "Failed to fetch models from pi")
+            return
+          end
+
+          local output = obj.stdout ~= "" and obj.stdout or obj.stderr or ""
+          local models = {}
+          for _, line in ipairs(vim.split(output, "\n", { trimempty = true })) do
+            local provider, model = line:match("^(%S+)%s+(%S+)")
+            if provider and provider ~= "provider" then
+              table.insert(models, provider .. "/" .. model)
+            end
+          end
+
+          callback(models, nil)
+        end)
+      end)
+    end
+
+    function PiProvider._get_provider_name()
+      return "PiProvider"
+    end
+
+    function PiProvider._get_default_model()
+      return PI_DEFAULT_MODEL
+    end
+
+    _99.Providers.PiProvider = PiProvider
+
     -- For logging that is to a file if you wish to trace through requests
     -- for reporting bugs, i would not rely on this, but instead the provided
     -- logging mechanisms within 99.  This is for more debugging purposes
     local cwd = vim.uv.cwd()
     local basename = vim.fs.basename(cwd)
     _99.setup({
-      provider = _99.Providers.OpenCodeProvider,  -- default: OpenCodeProvider
-      model = "github-copilot/gpt-5.3-codex",
+      provider = PiProvider,
+      model = PI_DEFAULT_MODEL,
       logger = {
         level = _99.DEBUG,
         path = "/tmp/" .. basename .. ".99.debug",
@@ -76,6 +128,58 @@ return {
       -- },
     })
 
+    local function select_model()
+      local ok, telescope = pcall(require, "99.extensions.telescope")
+      if ok then
+        telescope.select_model()
+        return
+      end
+
+      local ok_fzf, fzf_lua = pcall(require, "99.extensions.fzf_lua")
+      if ok_fzf then
+        fzf_lua.select_model()
+        return
+      end
+
+      vim.notify("99: no model picker extension available", vim.log.levels.WARN)
+    end
+
+    local function select_provider()
+      local ok, telescope = pcall(require, "99.extensions.telescope")
+      if ok then
+        telescope.select_provider()
+        return
+      end
+
+      local ok_fzf, fzf_lua = pcall(require, "99.extensions.fzf_lua")
+      if ok_fzf then
+        fzf_lua.select_provider()
+        return
+      end
+
+      vim.notify("99: no provider picker extension available", vim.log.levels.WARN)
+    end
+
+    vim.api.nvim_create_user_command("NNModel", function()
+      select_model()
+    end, { desc = "99: select model" })
+
+    vim.api.nvim_create_user_command("NNProvider", function()
+      select_provider()
+    end, { desc = "99: select provider" })
+
+    vim.api.nvim_create_user_command("NNInfo", function()
+      _99.info()
+    end, { desc = "99: show info" })
+
+    vim.api.nvim_create_user_command("NNAddMd", function(opts)
+      _99.add_md_file(vim.fn.expand(opts.args))
+    end, {
+      desc = "99: add markdown context file",
+      nargs = 1,
+      complete = "file",
+    })
+
     -- take extra note that i have visual selection only in v mode
     -- technically whatever your last visual selection is, will be used
     -- so i have this set to visual mode so i dont screw up and use an
@@ -85,15 +189,27 @@ return {
     -- so just prepare for it now
     vim.keymap.set("v", "<leader>9v", function()
       _99.visual()
-    end)
+    end, { desc = "99: transform visual selection" })
 
     --- if you have a request you dont want to make any changes, just cancel it
     vim.keymap.set("n", "<leader>9x", function()
       _99.stop_all_requests()
-    end)
+    end, { desc = "99: stop all requests" })
 
     vim.keymap.set("n", "<leader>9s", function()
       _99.search()
-    end)
+    end, { desc = "99: search project" })
+
+    vim.keymap.set("n", "<leader>9t", function()
+      _99.tutorial({})
+    end, { desc = "99: open tutorial prompt" })
+
+    vim.keymap.set("n", "<leader>9l", function()
+      _99.view_logs()
+    end, { desc = "99: view logs" })
+
+    vim.keymap.set("n", "<leader>9o", function()
+      _99.open()
+    end, { desc = "99: reopen previous result" })
   end,
 }
