@@ -3,7 +3,11 @@ local conform = require("conform")
 local opts = {
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { lsp_format = "prefer" },
+    javascript = { "eslint_d", "prettierd", "prettier", stop_after_first = false },
+    javascriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = false },
+    typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = false },
+    typescriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = false },
+    svelte = { "eslint_d", "prettierd", lsp_format = "fallback", stop_after_first = false },
     python = { "black", lsp_format = "fallback" },
     rust = { "rustfmt" },
     java = { "google-java-format" },

@@ -19,9 +19,25 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local ts_capabilities = vim.deepcopy(cmp_capabilities)
+
+      ts_capabilities.textDocument.completion.completionItem.snippetSupport = false
 
       vim.lsp.config("*", {
         capabilities = cmp_capabilities,
+      })
+
+      vim.lsp.config("svelte", {
+        capabilities = ts_capabilities,
+      })
+      vim.lsp.config("ts_ls", {
+        capabilities = ts_capabilities,
+      })
+      vim.lsp.config("tsserver", {
+        capabilities = ts_capabilities,
+      })
+      vim.lsp.config("vtsls", {
+        capabilities = ts_capabilities,
       })
 
       local lsp_attach = require("vimmmiru.plugins.lsp.lsp_config").lsp_attach
@@ -50,6 +66,7 @@ return {
           "yamlls",
           "ruff",
           "jsonls",
+          "svelte",
         },
         automatic_enable = true,
       })

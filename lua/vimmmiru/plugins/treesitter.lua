@@ -21,7 +21,20 @@ return {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
-      ensure_installed = { "c", "cpp", "lua", "python", "rust", "java", "vimdoc", "yaml" },
+      ensure_installed = {
+        "c",
+        "cpp",
+        "lua",
+        "python",
+        "rust",
+        "java",
+        "vimdoc",
+        "yaml",
+        "typescript",
+        "svelte",
+        "html",
+        "css",
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
