@@ -9,7 +9,7 @@ return {
   cmd = "Copilot",
   event = "InsertEnter",
   config = function()
-    local exclude_dirs = { vim.fn.expand("$HOME/aivis/engine-v2"), vim.fn.expand("$HOME/my_project/neetcode") }
+    local exclude_dirs = { vim.fn.expand("$HOME/aivis/engine-v2"), vim.fn.expand("$HOME/mycode/neetcode") }
     require("copilot").setup({
       should_attach = function(_, _)
         local root_dir = require("lspconfig.util").root_pattern(".git")(vim.fn.expand("%:p"))
