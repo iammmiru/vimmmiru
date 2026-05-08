@@ -5,7 +5,7 @@ if vim.fn.has("mac") == 1 then
   SYSTEM = "mac"
 end
 
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
 
 local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 local path_to_lsp_server = jdtls_path .. "/config_" .. SYSTEM

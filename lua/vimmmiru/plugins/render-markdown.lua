@@ -17,6 +17,9 @@ return {
         "NONE",
       },
     },
-    completions = { lsp = { enabled = true } },
+    completions = {
+      lsp = { enabled = true },
+      blink = { enabled = true },
+    },
   },
 }

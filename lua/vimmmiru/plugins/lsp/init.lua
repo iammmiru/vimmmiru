@@ -18,13 +18,13 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local ts_capabilities = vim.deepcopy(cmp_capabilities)
+      local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
+      local ts_capabilities = vim.deepcopy(lsp_capabilities)
 
       ts_capabilities.textDocument.completion.completionItem.snippetSupport = false
 
       vim.lsp.config("*", {
-        capabilities = cmp_capabilities,
+        capabilities = lsp_capabilities,
       })
 
       vim.lsp.config("svelte", {

@@ -9,7 +9,7 @@ vim.g.rustaceanvim = {
   },
   server = {
     cmd = { "/Users/mirulee/.cargo/bin/rust-analyzer" },
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    capabilities = require("blink.cmp").get_lsp_capabilities(),
     standalone = false,
     -- cmd_env = {
     -- 	RA_LOG = "proc-macro=debug",
@@ -77,8 +77,8 @@ Rust.setup = function()
       hover = true,
     },
     completion = {
-      cmp = {
-        enabled = true,
+      blink = {
+        use_custom_kind = true,
       },
     },
   })
